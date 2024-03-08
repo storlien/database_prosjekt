@@ -84,3 +84,15 @@ CREATE TABLE Forestilling (
     FOREIGN KEY (StykkeID) REFERENCES Teaterstykke(StykkeID)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+
+-- test data 
+
+INSERT INTO KundeProfil (Mobilnummer, Navn, Adresse)
+VALUES ('12345678', 'Ola Nordmann', 'Gateadresse 123, 0123 Oslo');
+
+INSERT INTO BillettKjop (KjopID, Tid, Dato, Mobilnummer)
+VALUES (1, '12:00:00', '2024-03-10', '12345678');
+
+INSERT INTO Billett (BillettID, KjopID, StykkeID, ForestillingNr, BillettType, OmraadeID, SeteNr, RadNr)
+VALUES (101, 1, 5, 3, 'Voksen', 2, 15, 3);
