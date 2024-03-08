@@ -12,6 +12,7 @@ CREATE TABLE BillettKjop (
     Dato DATE,
     Mobilnummer VARCHAR(15),
     FOREIGN KEY (Mobilnummer) REFERENCES KundeProfil(Mobilnummer)
+    ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Billett-tabellen
@@ -24,10 +25,14 @@ CREATE TABLE Billett (
     OmraadeID INT,
     SeteNr INT,
     RadNr INT,
-    FOREIGN KEY (KjopID) REFERENCES BillettKjop(KjopID),
-    FOREIGN KEY (StykkeID, ForestillingNr) REFERENCES Forestilling(StykkeID, ForestillingNr),
-    FOREIGN KEY (BillettType) REFERENCES KundeGruppe(GruppeNavn),
+    FOREIGN KEY (KjopID) REFERENCES BillettKjop(KjopID)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (StykkeID, ForestillingNr) REFERENCES Forestilling(StykkeID, ForestillingNr)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (BillettType) REFERENCES KundeGruppe(GruppeNavn)
+    ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (OmraadeID, SeteNr, RadNr) REFERENCES Sete(OmraadeID, SeteNr, RadNr)
+    ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- Sete-tabellen
@@ -36,6 +41,7 @@ CREATE TABLE Sete (
     RadNr INT,
     OmraadeID INT,
     PRIMARY KEY (SeteNr, RadNr, OmraadeID)
+    -- Assuming there is no need for ON DELETE or ON UPDATE cascade here as it's not dependent on other tables
 );
 
 -- Omraade-tabellen
@@ -44,6 +50,7 @@ CREATE TABLE Omraade (
     Navn VARCHAR(100),
     SalNr INT,
     FOREIGN KEY (SalNr) REFERENCES Teatersal(SalNr)
+    ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- KundeGruppe-tabellen
@@ -63,8 +70,10 @@ CREATE TABLE Teaterstykke (
     Tittel VARCHAR(100),
     SesongID INT,
     SalNr INT,
-    FOREIGN KEY (SesongID) REFERENCES TeaterSesong(SesongID),
+    FOREIGN KEY (SesongID) REFERENCES TeaterSesong(SesongID)
+    ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (SalNr) REFERENCES Teatersal(SalNr)
+    ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- TeaterSesong-tabellen
@@ -82,7 +91,5 @@ CREATE TABLE Forestilling (
     Tid TIME,
     PRIMARY KEY (StykkeID, ForestillingNr),
     FOREIGN KEY (StykkeID) REFERENCES Teaterstykke(StykkeID)
+    ON DELETE CASCADE ON UPDATE CASCADE
 );
-
--- ... (og så videre for andre tabeller)
-
