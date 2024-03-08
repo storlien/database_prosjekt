@@ -1,21 +1,17 @@
--- KundeProfil-tabellen
 CREATE TABLE KundeProfil (
     Mobilnummer VARCHAR(15) PRIMARY KEY,
     Navn VARCHAR(100),
     Adresse VARCHAR(255)
 );
-
--- BillettKjop-tabellen
 CREATE TABLE BillettKjop (
     KjopID INT PRIMARY KEY,
     Tid TIME,
     Dato DATE,
-    Mobilnummer VARCHAR(15),
+    Mobilnummer VARCHAR(8),
     FOREIGN KEY (Mobilnummer) REFERENCES KundeProfil(Mobilnummer)
-    ON DELETE CASCADE ON UPDATE CASCADE
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
 
--- Billett-tabellen
 CREATE TABLE Billett (
     BillettID INT PRIMARY KEY,
     KjopID INT,
@@ -26,64 +22,58 @@ CREATE TABLE Billett (
     SeteNr INT,
     RadNr INT,
     FOREIGN KEY (KjopID) REFERENCES BillettKjop(KjopID)
-    ON DELETE CASCADE ON UPDATE CASCADE,
+        ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (StykkeID, ForestillingNr) REFERENCES Forestilling(StykkeID, ForestillingNr)
-    ON DELETE CASCADE ON UPDATE CASCADE,
+        ON DELETE SET NULL ON UPDATE CASCADE,
     FOREIGN KEY (BillettType) REFERENCES KundeGruppe(GruppeNavn)
-    ON DELETE CASCADE ON UPDATE CASCADE,
+        ON DELETE SET NULL ON UPDATE CASCADE,
     FOREIGN KEY (OmraadeID, SeteNr, RadNr) REFERENCES Sete(OmraadeID, SeteNr, RadNr)
-    ON DELETE CASCADE ON UPDATE CASCADE
+        ON DELETE SET NULL ON UPDATE CASCADE
 );
 
--- Sete-tabellen
 CREATE TABLE Sete (
     SeteNr INT,
     RadNr INT,
     OmraadeID INT,
-    PRIMARY KEY (SeteNr, RadNr, OmraadeID)
-    -- Assuming there is no need for ON DELETE or ON UPDATE cascade here as it's not dependent on other tables
+    PRIMARY KEY (SeteNr, RadNr, OmraadeID),
+    FOREIGN KEY (OmraadeID) REFERENCES Omraade(OmraadeID)
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
 
--- Omraade-tabellen
 CREATE TABLE Omraade (
     OmraadeID INT PRIMARY KEY,
     Navn VARCHAR(100),
     SalNr INT,
     FOREIGN KEY (SalNr) REFERENCES Teatersal(SalNr)
-    ON DELETE CASCADE ON UPDATE CASCADE
+        ON DELETE SET NULL ON UPDATE CASCADE
 );
 
--- KundeGruppe-tabellen
 CREATE TABLE KundeGruppe (
     GruppeNavn VARCHAR(50) PRIMARY KEY
 );
 
--- Teatersal-tabellen
 CREATE TABLE Teatersal (
     SalNr INT PRIMARY KEY,
     SalNavn VARCHAR(100)
 );
 
--- Teaterstykke-tabellen
 CREATE TABLE Teaterstykke (
     StykkeID INT PRIMARY KEY,
     Tittel VARCHAR(100),
     SesongID INT,
     SalNr INT,
     FOREIGN KEY (SesongID) REFERENCES TeaterSesong(SesongID)
-    ON DELETE CASCADE ON UPDATE CASCADE,
+        ON DELETE SET NULL ON UPDATE CASCADE,
     FOREIGN KEY (SalNr) REFERENCES Teatersal(SalNr)
-    ON DELETE CASCADE ON UPDATE CASCADE
+        ON DELETE SET NULL ON UPDATE CASCADE
 );
 
--- TeaterSesong-tabellen
 CREATE TABLE TeaterSesong (
     SesongID INT PRIMARY KEY,
     Aar INT,
     Aarstid VARCHAR(50)
 );
 
--- Forestilling-tabellen
 CREATE TABLE Forestilling (
     StykkeID INT,
     ForestillingNr INT,
@@ -91,5 +81,5 @@ CREATE TABLE Forestilling (
     Tid TIME,
     PRIMARY KEY (StykkeID, ForestillingNr),
     FOREIGN KEY (StykkeID) REFERENCES Teaterstykke(StykkeID)
-    ON DELETE CASCADE ON UPDATE CASCADE
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
