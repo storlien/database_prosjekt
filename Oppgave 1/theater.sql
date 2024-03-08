@@ -1,15 +1,16 @@
 CREATE TABLE KundeProfil (
-    Mobilnummer VARCHAR(15) PRIMARY KEY,
+    Mobilnummer INT(8) PRIMARY KEY,
     Navn VARCHAR(100),
     Adresse VARCHAR(255)
 );
+
 CREATE TABLE BillettKjop (
     KjopID INT PRIMARY KEY,
     Tid TIME,
     Dato DATE,
-    Mobilnummer VARCHAR(8),
+    Mobilnummer INT(8), -- Norske mobilnummer er 8 siffer
     FOREIGN KEY (Mobilnummer) REFERENCES KundeProfil(Mobilnummer)
-        ON DELETE CASCADE ON UPDATE CASCADE
+        ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 CREATE TABLE Billett (
