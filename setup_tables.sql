@@ -19,29 +19,29 @@ DROP TABLE IF EXISTS Oppgave;
 DROP TABLE IF EXISTS Utforer;
 
 CREATE TABLE KundeProfil (
-    Mobilnummer INT(8) PRIMARY KEY,
+    Mobilnummer INTEGER PRIMARY KEY,
     Navn VARCHAR(100),
     Adresse VARCHAR(255)
 );
 
 CREATE TABLE BillettKjop (
-    KjopID INT PRIMARY KEY,
+    KjopID INTEGER PRIMARY KEY,
     Tid TIME,
     Dato DATE,
-    Mobilnummer INT(8),
+    Mobilnummer INTEGER,
     FOREIGN KEY (Mobilnummer) REFERENCES KundeProfil(Mobilnummer)
         ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 CREATE TABLE Billett (
-    BillettID INT PRIMARY KEY,
-    KjopID INT,
-    StykkeID INT,
-    ForestillingNr INT,
+    BillettID INTEGER PRIMARY KEY,
+    KjopID INTEGER,
+    StykkeID INTEGER,
+    ForestillingNr INTEGER,
     BillettType VARCHAR(50),
-    OmraadeID INT,
-    SeteNr INT,
-    RadNr INT,
+    OmraadeID INTEGER,
+    SeteNr INTEGER,
+    RadNr INTEGER,
     FOREIGN KEY (KjopID) REFERENCES BillettKjop(KjopID)
         ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (StykkeID, ForestillingNr) REFERENCES Forestilling(StykkeID, ForestillingNr)
@@ -53,18 +53,18 @@ CREATE TABLE Billett (
 );
 
 CREATE TABLE Sete (
-    SeteNr INT,
-    RadNr INT,
-    OmraadeID INT,
+    SeteNr INTEGER,
+    RadNr INTEGER,
+    OmraadeID INTEGER,
     PRIMARY KEY (SeteNr, RadNr, OmraadeID),
     FOREIGN KEY (OmraadeID) REFERENCES Omraade(OmraadeID)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Omraade (
-    OmraadeID INT PRIMARY KEY,
+    OmraadeID INTEGER PRIMARY KEY,
     Navn VARCHAR(100),
-    SalNr INT,
+    SalNr INTEGER,
     FOREIGN KEY (SalNr) REFERENCES Teatersal(SalNr)
         ON DELETE SET NULL ON UPDATE CASCADE
 );
@@ -74,15 +74,16 @@ CREATE TABLE KundeGruppe (
 );
 
 CREATE TABLE Teatersal (
-    SalNr INT PRIMARY KEY,
+    SalNr INTEGER PRIMARY KEY,
     SalNavn VARCHAR(100)
 );
 
 CREATE TABLE Teaterstykke (
-    StykkeID INT PRIMARY KEY,
+    StykkeID INTEGER PRIMARY KEY,
     Tittel VARCHAR(100),
-    SesongID INT,
-    SalNr INT,
+    SkrevetAv VARCHAR(100),
+    SesongID INTEGER,
+    SalNr INTEGER,
     FOREIGN KEY (SesongID) REFERENCES TeaterSesong(SesongID)
         ON DELETE SET NULL ON UPDATE CASCADE,
     FOREIGN KEY (SalNr) REFERENCES Teatersal(SalNr)
@@ -90,14 +91,15 @@ CREATE TABLE Teaterstykke (
 );
 
 CREATE TABLE TeaterSesong (
-    SesongID INT PRIMARY KEY,
-    Aar INT,
-    Aarstid VARCHAR(50)
+    SesongID INTEGER PRIMARY KEY,
+    Aar INTEGER,
+    Aarstid VARCHAR(50),
+    UNIQUE (Aar, Aarstid)
 );
 
 CREATE TABLE Forestilling (
-    StykkeID INT,
-    ForestillingNr INT,
+    StykkeID INTEGER,
+    ForestillingNr INTEGER,
     Dato DATE,
     Tid TIME,
     PRIMARY KEY (StykkeID, ForestillingNr),
@@ -107,7 +109,7 @@ CREATE TABLE Forestilling (
 
 CREATE TABLE ForGruppe (
     GruppeNavn VARCHAR(50),
-    StykkeID INT,
+    StykkeID INTEGER,
     Pris DECIMAL(10,2),
     PRIMARY KEY (GruppeNavn, StykkeID),
     FOREIGN KEY (GruppeNavn) REFERENCES KundeGruppe(GruppeNavn)
@@ -117,27 +119,27 @@ CREATE TABLE ForGruppe (
 );
 
 CREATE TABLE Ansatt (
-    AnsattID INT PRIMARY KEY,
+    AnsattID INTEGER PRIMARY KEY,
     Navn VARCHAR(100),
     Email VARCHAR(100),
     Status VARCHAR(50)
 );
 
 CREATE TABLE Skuespiller (
-    AnsattID INT,
+    AnsattID INTEGER,
     PRIMARY KEY (AnsattID),
     FOREIGN KEY (AnsattID) REFERENCES Ansatt(AnsattID)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Rolle (
-    RolleID INT PRIMARY KEY,
+    RolleID INTEGER PRIMARY KEY,
     Navn VARCHAR(100)
 );
 
 CREATE TABLE SpillerRolle (
-    AnsattID INT,
-    RolleID INT,
+    AnsattID INTEGER,
+    RolleID INTEGER,
     PRIMARY KEY (AnsattID, RolleID),
     FOREIGN KEY (AnsattID) REFERENCES Skuespiller(AnsattID)
         ON DELETE CASCADE ON UPDATE CASCADE,
@@ -146,8 +148,8 @@ CREATE TABLE SpillerRolle (
 );
 
 CREATE TABLE Akt (
-    StykkeID INT,
-    AktNr INT,
+    StykkeID INTEGER,
+    AktNr INTEGER,
     Navn VARCHAR(100),
     PRIMARY KEY (StykkeID, AktNr),
     FOREIGN KEY (StykkeID) REFERENCES Teaterstykke(StykkeID)
@@ -155,9 +157,9 @@ CREATE TABLE Akt (
 );
 
 CREATE TABLE PaaAkt (
-    StykkeID INT,
-    AktNr INT,
-    RolleID INT,
+    StykkeID INTEGER,
+    AktNr INTEGER,
+    RolleID INTEGER,
     PRIMARY KEY (StykkeID, AktNr, RolleID),
     FOREIGN KEY (StykkeID, AktNr) REFERENCES Akt(StykkeID, AktNr)
         ON DELETE CASCADE ON UPDATE CASCADE,
@@ -166,16 +168,16 @@ CREATE TABLE PaaAkt (
 );
 
 CREATE TABLE Oppgave (
-    OID INT PRIMARY KEY,
+    OID INTEGER PRIMARY KEY,
     Navn VARCHAR(100),
-    StykkeID INT,
+    StykkeID INTEGER,
     FOREIGN KEY (StykkeID) REFERENCES Teaterstykke(StykkeID)
         ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 CREATE TABLE Utforer (
-    OID INT,
-    AnsattID INT,
+    OID INTEGER,
+    AnsattID INTEGER,
     PRIMARY KEY (OID, AnsattID),
     FOREIGN KEY (OID) REFERENCES Oppgave(OID)
         ON DELETE CASCADE ON UPDATE CASCADE,
