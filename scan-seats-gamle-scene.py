@@ -1,4 +1,5 @@
 import sys
+from api.gamle_scene import reserve_seats
 
 sliced_lines = []
 no_rows_galleri = 3
@@ -108,10 +109,6 @@ def get_bought_seats(no_rows):
                 list_of_bought_seats.append(seat_tuple)
     
     return list_of_bought_seats
-
-def reserve_seats(section, bought_seats):
-    # TODO Reservere seter i databasen
-    print(section, bought_seats)
 
 if __name__ == "__main__":
     main()
