@@ -3,8 +3,8 @@ import sqlite3
 '''
 Finds the actors that play in the same act as input actor and prints the title of the play and the actors.
 '''
-def actors_same_act(actor) -> None:
-    con = sqlite3.connect("teater.db")
+def actors_same_act(actor, db: str = "teater.db") -> None:
+    con = sqlite3.connect(db)
     cur = con.cursor()
     cur.execute(f'''SELECT DISTINCT Akt.StykkeID, Akt.AktNr
                 FROM Akt JOIN PaaAkt ON Akt.StykkeID = PaaAkt.StykkeID AND Akt.AktNr = PaaAkt.AktNr

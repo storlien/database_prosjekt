@@ -3,8 +3,8 @@ import sqlite3
 '''
 Finds all actors and the roles they play in the plays and prints the title of the play, the role and the actor.
 ''' 
-def find_actors():
-    con = sqlite3.connect("teater.db")
+def find_actors(db: str = "teater.db"):
+    con = sqlite3.connect(db)
     cur = con.cursor()
     cur.execute('''SELECT DISTINCT Teaterstykke.Tittel, Ansatt.Navn, Rolle.Navn 
                 FROM Teaterstykke JOIN PaaAkt ON Teaterstykke.StykkeID = PaaAkt.StykkeID 

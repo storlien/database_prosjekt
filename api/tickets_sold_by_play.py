@@ -4,8 +4,8 @@ import sqlite3
 Finds all plays and the number of tickets sold for the play and prints the title of the play and the number of tickets sold.
 Sorted on number of tickets sold in ascending order.
 '''
-def tickets_sold():
-    con = sqlite3.connect("teater.db")
+def tickets_sold(db: str = "teater.db"):
+    con = sqlite3.connect(db)
     cur = con.cursor()
     cur.execute('''SELECT Teaterstykke.Tittel, Forestilling.Dato, COUNT(Billett.BillettID) 
                 FROM Forestilling LEFT OUTER JOIN Billett ON Forestilling.StykkeID = Billett.StykkeID AND Forestilling.ForestillingNr = Billett.ForestillingNr
