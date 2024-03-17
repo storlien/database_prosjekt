@@ -14,6 +14,8 @@ def actors_same_act(actor) -> None:
                 ''')
     actor_acts = cur.fetchall()
 
+    print(f"{'-' * 5} Skuespillere som spiller i samme akt som {actor} {'-' * 5}")
+    
     for act in actor_acts:
         cur.execute(f'''SELECT DISTINCT Teaterstykke.Tittel, Akt.Navn, Ansatt.Navn
                 FROM Akt JOIN PaaAkt ON Akt.StykkeID = PaaAkt.StykkeID AND Akt.AktNr = PaaAkt.AktNr
@@ -23,6 +25,9 @@ def actors_same_act(actor) -> None:
                 WHERE Akt.StykkeID = {act[0]} AND Akt.AktNr = {act[1]} AND Ansatt.Navn != '{actor}'
                 ''')
         for row in cur.fetchall():
-            print(f"Stykke: {row[0]} i akt {row[1]} med {row[2]}:")
-            
+            print(f"Stykke: {row[0]} \nakt: {row[1]} \nSkuespiller: {row[2]}")
+            print("-")
+                        
+    con.close()
+    
 actors_same_act("Synnøve Fossum Eriksen")

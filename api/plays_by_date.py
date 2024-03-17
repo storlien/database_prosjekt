@@ -12,6 +12,10 @@ def find_plays(date):
                 INNER JOIN Teaterstykke ON Teaterstykke.StykkeID = Forestilling.StykkeID 
                 WHERE Forestilling.Dato = '{date}' 
                 GROUP BY Forestilling.ForestillingNr''')
+    print(f"{'-' * 10} Forestillinger {date} {'-' * 10}")
     for row in cur.fetchall():
-        print(f"Forestilling: {row[0]}, {row[1]}. Antall billetter solgt: {row[2]}")
+        print(f"{row[0]}, {row[1]} | Billetter solgt: {row[2]}")
+    
+    con.close()
 
+find_plays("2024-02-03")

@@ -12,7 +12,11 @@ def tickets_sold():
                 INNER JOIN Teaterstykke ON Teaterstykke.StykkeID = Forestilling.StykkeID
                 GROUP BY Forestilling.ForestillingNr 
                 ORDER BY COUNT(Billett.BillettID)''')
+    
+    print(f"{'-' * 10} Forestillinger og antall billetter solgt {'-' * 10}")
     for row in cur.fetchall():
-        print(f"Forestilling: {row[0]}, Dato: {row[1]} Antall billetter solgt: {row[2]}")
+        print(f" {row[0]}, {row[1]} | Billetter solgt: {row[2]}")
         
+    con.close()
+    
 tickets_sold()

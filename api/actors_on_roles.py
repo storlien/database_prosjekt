@@ -11,5 +11,12 @@ def find_actors():
                 JOIN Rolle ON PaaAkt.RolleID = Rolle.RolleID 
                 JOIN SpillerRolle ON PaaAkt.RolleID = SpillerRolle.RolleID 
                 JOIN Ansatt ON SpillerRolle.AnsattID = Ansatt.AnsattID''')
+    
+    print(f"{'-' * 10} Skuespillere og roller {'-' * 10}")
     for row in cur.fetchall():
-        print(f"{row[0]}, Rolle: {row[2]}, Skuespiller: {row[1]}")
+        print(f"Stykke: {row[0]} \nRolle: {row[2]} \nSkuespiller: {row[1]}")
+        print("-")
+        
+    con.close()
+        
+find_actors()
