@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS Omraade;
 DROP TABLE IF EXISTS KundeGruppe;
 DROP TABLE IF EXISTS Teatersal;
 DROP TABLE IF EXISTS Teaterstykke;
-DROP TABLE IF EXISTS ForGruppe;
+DROP TABLE IF EXISTS BillettPriser;
 DROP TABLE IF EXISTS Ansatt;
 DROP TABLE IF EXISTS Skuespiller;
 DROP TABLE IF EXISTS Rolle;
@@ -38,7 +38,7 @@ CREATE TABLE Billett (
     KjopID INTEGER,
     StykkeID INTEGER,
     ForestillingNr INTEGER,
-    BillettType VARCHAR(50),
+    KundeGruppe VARCHAR(50),
     OmraadeID INTEGER,
     SeteNr INTEGER,
     RadNr INTEGER,
@@ -46,7 +46,7 @@ CREATE TABLE Billett (
         ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (StykkeID, ForestillingNr) REFERENCES Forestilling(StykkeID, ForestillingNr)
         ON DELETE SET NULL ON UPDATE CASCADE,
-    FOREIGN KEY (BillettType) REFERENCES KundeGruppe(GruppeNavn)
+    FOREIGN KEY (KundeGruppe) REFERENCES KundeGruppe(GruppeNavn)
         ON DELETE SET NULL ON UPDATE CASCADE,
     FOREIGN KEY (OmraadeID, SeteNr, RadNr) REFERENCES Sete(OmraadeID, SeteNr, RadNr)
         ON DELETE SET NULL ON UPDATE CASCADE
@@ -107,7 +107,7 @@ CREATE TABLE Forestilling (
         ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE ForGruppe (
+CREATE TABLE BillettPriser (
     GruppeNavn VARCHAR(50),
     StykkeID INTEGER,
     Pris DECIMAL(10,2),
@@ -126,8 +126,7 @@ CREATE TABLE Ansatt (
 );
 
 CREATE TABLE Skuespiller (
-    AnsattID INTEGER,
-    PRIMARY KEY (AnsattID),
+    AnsattID INTEGER PRIMARY KEY,
     FOREIGN KEY (AnsattID) REFERENCES Ansatt(AnsattID)
         ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -164,7 +163,7 @@ CREATE TABLE PaaAkt (
     FOREIGN KEY (StykkeID, AktNr) REFERENCES Akt(StykkeID, AktNr)
         ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (RolleID) REFERENCES Rolle(RolleID)
-        ON DELETE NO ACTION ON UPDATE CASCADE
+        ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Oppgave (

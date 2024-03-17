@@ -1,9 +1,12 @@
 import sqlite3
 
+PLAY_ID = 1
+ACT_NO = 1
+
+
 section_id = {
-        "Parkett": 3,
-        "Balkong": 4,
-        "Galleri": 5
+        "Parkett": 1,
+        "Galleri": 2
     }
 
 def reserve_seats(db, section, bought_seats):
