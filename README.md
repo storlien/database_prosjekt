@@ -3,15 +3,27 @@ Prosjekt i faget TDT4145: Datamodellering og databasesystemer
 
 ## Hvordan raskt sette opp alle tabeller med innsetting av data
 
-Kjør kommando: python3 complete_setup_theatre.py teater.db
+Kjør kommando: 
+
+```zsh
+python3 complete_setup_theatre.py teater.db
+```
 
 ## Hvordan sette opp databasen med tabeller
 //TODO
-1. Kommando sqlite3 teater.db
-2. Kommando .read setup_tables.sql
+1. Kommando 
+
+```zsh
+sqlite3 teater.db
+```
+2. Kommando 
+
+```zsh
+.read setup_tables.sql
+```
 
 ##  Hvordan sette inn testdata
-//TODO
+// TODO
 
 ## Forutsetninger eller andre merknader
 
