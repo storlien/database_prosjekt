@@ -5,7 +5,7 @@ from setup.insert_seats_hovedscenen import insert_seats as insert_seats_hovedsce
 from setup.insert_seats_gamle_scene import insert_seats as insert_seats_gamle_scene
 
 
-def main(db_name: str = "./teater.db"):
+def main(db_name: str = "teater.db"):
     arguments = sys.argv[1:]
 
     if len(arguments) == 0:

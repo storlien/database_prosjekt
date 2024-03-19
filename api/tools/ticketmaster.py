@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 class TicketMaster:
-    def __init__(self, db_path="teater.sqlite"):
+    def __init__(self, db_path="teater.db"):
         self.db_path = db_path
 
     def get_section_ids(self, play_id):
