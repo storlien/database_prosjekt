@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 class TicketMaster:
-    def __init__(self, db_path="theatre.sqlite"):
+    def __init__(self, db_path="teater.sqlite"):
         self.db_path = db_path
 
     def get_section_ids(self, play_id):
@@ -136,8 +136,3 @@ class TicketMaster:
             return f"{n} tickets reserved in section {section} on row {row_number} for '{play_name}' on {date}."
         else:
             return "No available seats found."
-
-
-# Example usage:
-# ticket_master = TicketMaster('database.db')
-# print(ticket_master.purchase_tickets('STØRST AV ALT ER KJÆRLIGHETEN', '2024-02-03',

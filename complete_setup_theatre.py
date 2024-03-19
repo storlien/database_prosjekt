@@ -5,7 +5,7 @@ from setup.insert_seats_hovedscenen import insert_seats as insert_seats_hovedsce
 from setup.insert_seats_gamle_scene import insert_seats as insert_seats_gamle_scene
 
 
-def main(db_name: str = "./theatre.db"):
+def main(db_name: str = "./teater.db"):
     arguments = sys.argv[1:]
 
     if len(arguments) == 0:
@@ -45,13 +45,8 @@ def main(db_name: str = "./theatre.db"):
 
 def teardown():
     try:
-        if os.path.exists("theatre.db"):
-            os.remove("theatre.db")
-    except FileNotFoundError:
-        pass
-    try:
-        if os.path.exists("theatre.sqlite"):
-            os.remove("theatre.sqlite")
+        if os.path.exists("teater.db"):
+            os.remove("teater.db")
     except FileNotFoundError:
         pass
 
