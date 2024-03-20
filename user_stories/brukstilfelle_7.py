@@ -45,6 +45,11 @@ def actors_same_act(actor, db: str = "teater.db") -> None:
                         
     con.close()
 
-# Example of use:
-# actors_same_act("Synnøve Fossum Eriksen")
+input = input("Hvilken skuespiller vil du finne andre skuespillere som spiller i samme akt som? (Fornavn Etternavn). Defualt er Synnøve Fossum Eriksen:")
+
+if input.strip() == "":
+    input = "Synnøve Fossum Eriksen"
+    print("Default brukt: Synnøve Fossum Eriksen\n")
+
+actors_same_act(input)
 

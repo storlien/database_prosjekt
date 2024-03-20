@@ -87,20 +87,22 @@ Brukstilfelle 1 ble løst i de foregående stegene der databasefilen ble satt op
 
 //TODO
 
-### Brukstilfelle 4: Oversikt over forestillinger og solgte stoler
+### Brukstilfelle 4: Oversikt over forestillinger og solgte stoler en gitt dato
 
-For å skrive ut alle forestillinger og solgte stoler, kjør kommando:
+For å skrive ut alle forestillinger og solgte stoler en gitt dato, kjør kommando:
 
 ```zsh
-python user_stories/brukstilfelle_4.py
+python3 user_stories/brukstilfelle_4.py
 ```
+
+For default input trykk enter.
 
 ### Brukstilfelle 5: Hvilke skuespillere spiller på hvilke forestillinger
 
 For å skrive ut alle forestillinger og skuespillere, kjør kommando:
 
 ```zsh
-python user_stories/brukstilfelle_5.py
+python3 user_stories/brukstilfelle_5.py
 ```
 
 ### Brukstilfelle 6: Hvilke forestillinger har solgt best
@@ -108,16 +110,18 @@ python user_stories/brukstilfelle_5.py
 For å skrive ut hvilken forestilling som har solgt best, kjør kommando:
 
 ```zsh
-python user_stories/brukstilfelle_6.py
+python3 user_stories/brukstilfelle_6.py
 ```
 
-### Brukstilfelle 7: Hvilke skuespillere har spilt i samme akt
+### Brukstilfelle 7: Hvilke skuespillere har spilt i samme akt som en gitt skuespiller
 
-For å skrive ut hvilke skuespillere som har spilt i samme akt, kjør kommando:
+For å skrive ut hvilke skuespillere som har spilt i samme akt som en gitt skuespiller, kjør kommando:
 
 ```zsh
-python user_stories/brukstilfelle_7.py
+python3 user_stories/brukstilfelle_7.py
 ```
+
+For default input trykk enter.
 
 ## Forutsetninger eller andre merknader
 

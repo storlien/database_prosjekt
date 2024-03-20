@@ -23,5 +23,4 @@ def find_actors(db: str = "teater.db"):
         
     con.close()
   
-# Example of use: 
-# find_actors()
+find_actors()

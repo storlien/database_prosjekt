@@ -22,5 +22,10 @@ def find_plays(date, db: str = "teater.db"):
     
     con.close()
 
-# Example of use:
-find_plays("2024-02-03")
+input = input("Hvilken dato vil du finne forestillinger for? (YYYY-MM-DD), default er 2024-02-03:")
+
+if input.strip() == "":
+    input = "2024-02-03"
+    print("Default brukt: 2024-02-03\n")
+    
+find_plays(input)

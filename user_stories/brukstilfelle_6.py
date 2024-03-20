@@ -17,11 +17,10 @@ def tickets_sold(db: str = "teater.db"):
                 GROUP BY Teaterstykke.Tittel, Forestilling.ForestillingNr 
                 ORDER BY COUNT(Billett.BillettID) DESC''')
     
-    print(f"{'-' * 10} Forestillinger og antall billetter solgt {'-' * 10}")
+    print(f"{'-' * 10} Forestillinger og antall billetter solgt. Sortert synkende. {'-' * 10}")
     for row in cur.fetchall():
         print(f" {row[0]} | {row[1]} | {row[2]} | Billetter solgt: {row[3]} ")
         
     con.close()
 
-# Example of use:
-# tickets_sold()
+tickets_sold()
