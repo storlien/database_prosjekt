@@ -92,7 +92,7 @@ Brukstilfelle 1 ble løst i de foregående stegene der databasefilen ble satt op
 For å skrive ut alle forestillinger og solgte stoler, kjør kommando:
 
 ```zsh
-python user_stories/tickets_sold_by_play.py
+python user_stories/brukstilfelle_4.py
 ```
 
 ### Brukstilfelle 5: Hvilke skuespillere spiller på hvilke forestillinger
@@ -100,7 +100,7 @@ python user_stories/tickets_sold_by_play.py
 For å skrive ut alle forestillinger og skuespillere, kjør kommando:
 
 ```zsh
-python user_stories/actors_on_roles.py
+python user_stories/brukstilfelle_5.py
 ```
 
 ### Brukstilfelle 6: Hvilke forestillinger har solgt best
@@ -108,7 +108,7 @@ python user_stories/actors_on_roles.py
 For å skrive ut hvilken forestilling som har solgt best, kjør kommando:
 
 ```zsh
-python user_stories/tickets_sold_by_play.py
+python user_stories/brukstilfelle_6.py
 ```
 
 ### Brukstilfelle 7: Hvilke skuespillere har spilt i samme akt
@@ -116,7 +116,7 @@ python user_stories/tickets_sold_by_play.py
 For å skrive ut hvilke skuespillere som har spilt i samme akt, kjør kommando:
 
 ```zsh
-python user_stories/actors_same_act.py
+python user_stories/brukstilfelle_7.py
 ```
 
 ## Forutsetninger eller andre merknader
