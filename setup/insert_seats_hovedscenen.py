@@ -1,10 +1,5 @@
-import sys
+import sys, config
 import sqlite3
-
-PARKETT_SECTION_ID = 1
-GALLERI_SECTION_ID = 2
-
-unavailable_seats = [467,468,469,470,495,496,497,498]
 
 def main():
     arguments = sys.argv[1:]
@@ -26,9 +21,8 @@ def main():
 def insert_seats(db):
 
     print("Inserting seats into the database...")
-    print("Database file:", db)
-    print("Hovedscenen section ID:", PARKETT_SECTION_ID)
-    print("Galleri section ID:", GALLERI_SECTION_ID)
+    print("Hovedscenen section ID:", config.HOVEDSCENEN_PARKETT_SECTION_ID)
+    print("Galleri section ID:", config.HOVEDSCENEN_GALLERI_SECTION_ID)
 
     con = sqlite3.connect(db)
     cur = con.cursor()
@@ -37,15 +31,15 @@ def insert_seats(db):
     for seatNo in range(1, 505):
         rowNo = (seatNo-1)//28 + 1
 
-        if seatNo in unavailable_seats:
+        if seatNo in config.HOVEDSCENEN_UNAVAILABLE_SEATS:
             continue
 
-        con.execute(f"INSERT INTO Sete (SeteNr, RadNr, OmraadeID) VALUES ({seatNo}, {rowNo}, {PARKETT_SECTION_ID})")
+        con.execute(f"INSERT INTO Sete (SeteNr, RadNr, OmraadeID) VALUES ({seatNo}, {rowNo}, {config.HOVEDSCENEN_PARKETT_SECTION_ID})")
 
     # Galleri
     for seatNo in range(505,525):
         rowNo = (seatNo-505)//5 + 1
-        con.execute(f"INSERT INTO Sete (SeteNr, RadNr, OmraadeID) VALUES ({seatNo}, {rowNo}, {GALLERI_SECTION_ID})")
+        con.execute(f"INSERT INTO Sete (SeteNr, RadNr, OmraadeID) VALUES ({seatNo}, {rowNo}, {config.HOVEDSCENEN_GALLERI_SECTION_ID})")
   
     con.commit()
     con.close()
