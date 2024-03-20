@@ -125,7 +125,7 @@ def tickets_sold(db: str = "teater.db"):
     cur.execute('''SELECT Teaterstykke.Tittel, Forestilling.Dato, COUNT(Billett.BillettID) 
                 FROM Forestilling LEFT OUTER JOIN Billett ON Forestilling.StykkeID = Billett.StykkeID AND Forestilling.ForestillingNr = Billett.ForestillingNr
                 INNER JOIN Teaterstykke ON Teaterstykke.StykkeID = Forestilling.StykkeID
-                GROUP BY Forestilling.ForestillingNr 
+                GROUP BY Teaterstykke.Tittel, Forestilling.ForestillingNr 
                 ORDER BY COUNT(Billett.BillettID)''')
     
     print(f"{'-' * 10} Forestillinger og antall billetter solgt {'-' * 10}")
