@@ -4,7 +4,31 @@ import sqlite3
 ## Alle brukerhistoriene er implementert i funksjoner under.
 
 '''
-Finds all actors and the roles they play in the plays and prints the title of the play, the role and the actor.
+Oppgave 4
+
+Finds all plays on a given date and prints the title of the play, the time of the play and the number of tickets sold for the play.
+Template: find_plays("2024-02-03")
+'''
+def find_plays(date, db: str = "teater.db"):
+    con = sqlite3.connect(db)
+    cur = con.cursor()
+    cur.execute(f'''SELECT Teaterstykke.Tittel, Forestilling.Tid, COUNT(Billett.BillettID) 
+                FROM Forestilling LEFT OUTER JOIN Billett ON Forestilling.ForestillingNr = Billett.ForestillingNr 
+                INNER JOIN Teaterstykke ON Teaterstykke.StykkeID = Forestilling.StykkeID 
+                WHERE Forestilling.Dato = '{date}' 
+                GROUP BY Forestilling.ForestillingNr''')
+    print(f"{'-' * 10} Forestillinger {date} {'-' * 10}")
+    for row in cur.fetchall():
+        print(f"{row[0]}, {row[1]} | Billetter solgt: {row[2]}")
+    
+    con.close()
+
+# find_plays("2024-02-03")
+
+'''
+Oppgave 5:
+
+Finds all actors and the roles they play in the plays and prints the title of the play, the actor and the role.
 ''' 
 def find_actors(db: str = "teater.db"):
     con = sqlite3.connect(db)
@@ -17,47 +41,45 @@ def find_actors(db: str = "teater.db"):
     
     print(f"{'-' * 10} Skuespillere og roller {'-' * 10}")
     for row in cur.fetchall():
-        print(f"Stykke: {row[0]} \nRolle: {row[2]} \nSkuespiller: {row[1]}")
+        print(f"Stykke: {row[0]} \nSkuespiller: {row[1]} \nRolle: {row[2]}")
         print("-")
         
     con.close()
     
-# find_actors()
+find_actors()
 
 
 '''
+Oppgave 6:
+
+Finds all plays and the number of tickets sold for the play and prints the title of the play and the number of tickets sold.
+Sorted on number of tickets sold in descending order.
+'''
+def tickets_sold(db: str = "teater.db"):
+    con = sqlite3.connect(db)
+    cur = con.cursor()
+    cur.execute('''SELECT Teaterstykke.Tittel, Forestilling.Dato, Forestilling.Tid, COUNT(Billett.BillettID) 
+                FROM Forestilling LEFT OUTER JOIN Billett ON Forestilling.StykkeID = Billett.StykkeID AND Forestilling.ForestillingNr = Billett.ForestillingNr
+                INNER JOIN Teaterstykke ON Teaterstykke.StykkeID = Forestilling.StykkeID
+                GROUP BY Teaterstykke.Tittel, Forestilling.ForestillingNr 
+                ORDER BY COUNT(Billett.BillettID) DESC''')
+    
+    print(f"{'-' * 10} Forestillinger og antall billetter solgt {'-' * 10}")
+    for row in cur.fetchall():
+        print(f" {row[0]} | {row[1]} | {row[2]} | Billetter solgt: {row[3]} ")
+        
+    con.close()
+
+# tickets_sold()
+
+
+
+'''
+Oppgave 7:
+
 Finds the actors that play in the same act as input actor and prints the title of the play and the actors.
 '''
 def actors_same_act(actor, db: str = "teater.db") -> None:
-    con = sqlite3.connect(db)
-    cur = con.cursor()
-    cur.execute(f'''SELECT DISTINCT Akt.StykkeID, Akt.AktNr
-                FROM Akt JOIN PaaAkt ON Akt.StykkeID = PaaAkt.StykkeID AND Akt.AktNr = PaaAkt.AktNr
-                JOIN SpillerRolle ON PaaAkt.RolleID = SpillerRolle.RolleID
-                JOIN Ansatt ON SpillerRolle.AnsattID = Ansatt.AnsattID
-                WHERE Ansatt.Navn = '{actor}'
-                ''')
-    actor_acts = cur.fetchall()
-
-    print(f"{'-' * 5} Skuespillere som spiller i samme akt som {actor} {'-' * 5}")
-    
-    for act in actor_acts:
-        cur.execute(f'''SELECT DISTINCT Teaterstykke.Tittel, Akt.Navn, Ansatt.Navn
-                FROM Akt JOIN PaaAkt ON Akt.StykkeID = PaaAkt.StykkeID AND Akt.AktNr = PaaAkt.AktNr
-                JOIN SpillerRolle ON PaaAkt.RolleID = SpillerRolle.RolleID
-                JOIN Ansatt ON SpillerRolle.AnsattID = Ansatt.AnsattID
-                JOIN Teaterstykke ON Akt.StykkeID = Teaterstykke.StykkeID
-                WHERE Akt.StykkeID = {act[0]} AND Akt.AktNr = {act[1]} AND Ansatt.Navn != '{actor}'
-                ''')
-        for row in cur.fetchall():
-            print(f"Stykke: {row[0]} \nakt: {row[1]} \nSkuespiller: {row[2]}")
-            print("-")
-                        
-    con.close()
-    
-# actors_same_act("Synnøve Fossum Eriksen")
-
-def actors_same_act2(actor, db: str = "teater.db") -> None:
     con = sqlite3.connect(db)
     cur = con.cursor()
     query = f"""
@@ -95,43 +117,42 @@ def actors_same_act2(actor, db: str = "teater.db") -> None:
                         
     con.close()
 
-'''
-Finds all plays on a given date and prints the title of the play, the time of the play and the number of tickets sold for the play.
-Template: find_plays("2024-02-03")
-'''
-def find_plays(date, db: str = "teater.db"):
+# actors_same_act("Synnøve Fossum Eriksen")
+
+
+
+
+
+### TODO Fjernes
+def actors_same_act2(actor, db: str = "teater.db") -> None:
     con = sqlite3.connect(db)
     cur = con.cursor()
-    cur.execute(f'''SELECT Teaterstykke.Tittel, Forestilling.Tid, COUNT(Billett.BillettID) 
-                FROM Forestilling LEFT OUTER JOIN Billett ON Forestilling.ForestillingNr = Billett.ForestillingNr 
-                INNER JOIN Teaterstykke ON Teaterstykke.StykkeID = Forestilling.StykkeID 
-                WHERE Forestilling.Dato = '{date}' 
-                GROUP BY Forestilling.ForestillingNr''')
-    print(f"{'-' * 10} Forestillinger {date} {'-' * 10}")
-    for row in cur.fetchall():
-        print(f"{row[0]}, {row[1]} | Billetter solgt: {row[2]}")
+    cur.execute(f'''SELECT DISTINCT Akt.StykkeID, Akt.AktNr
+                FROM Akt JOIN PaaAkt ON Akt.StykkeID = PaaAkt.StykkeID AND Akt.AktNr = PaaAkt.AktNr
+                JOIN SpillerRolle ON PaaAkt.RolleID = SpillerRolle.RolleID
+                JOIN Ansatt ON SpillerRolle.AnsattID = Ansatt.AnsattID
+                WHERE Ansatt.Navn = '{actor}'
+                ''')
+    actor_acts = cur.fetchall()
+
+    print(f"{'-' * 5} Skuespillere som spiller i samme akt som {actor} {'-' * 5}")
     
+    for act in actor_acts:
+        cur.execute(f'''SELECT DISTINCT Teaterstykke.Tittel, Akt.Navn, Ansatt.Navn
+                FROM Akt JOIN PaaAkt ON Akt.StykkeID = PaaAkt.StykkeID AND Akt.AktNr = PaaAkt.AktNr
+                JOIN SpillerRolle ON PaaAkt.RolleID = SpillerRolle.RolleID
+                JOIN Ansatt ON SpillerRolle.AnsattID = Ansatt.AnsattID
+                JOIN Teaterstykke ON Akt.StykkeID = Teaterstykke.StykkeID
+                WHERE Akt.StykkeID = {act[0]} AND Akt.AktNr = {act[1]} AND Ansatt.Navn != '{actor}'
+                ORDER BY Teaterstykke.Tittel, Akt.AktNr, Ansatt.Navn
+                ''')
+        for row in cur.fetchall():
+            print(f"Stykke: {row[0]} \nakt: {row[1]} \nSkuespiller: {row[2]}")
+            print("-")
+                        
     con.close()
-
-# find_plays("2024-02-03")
-
-'''
-Finds all plays and the number of tickets sold for the play and prints the title of the play and the number of tickets sold.
-Sorted on number of tickets sold in ascending order.
-'''
-def tickets_sold(db: str = "teater.db"):
-    con = sqlite3.connect(db)
-    cur = con.cursor()
-    cur.execute('''SELECT Teaterstykke.Tittel, Forestilling.Dato, COUNT(Billett.BillettID) 
-                FROM Forestilling LEFT OUTER JOIN Billett ON Forestilling.StykkeID = Billett.StykkeID AND Forestilling.ForestillingNr = Billett.ForestillingNr
-                INNER JOIN Teaterstykke ON Teaterstykke.StykkeID = Forestilling.StykkeID
-                GROUP BY Teaterstykke.Tittel, Forestilling.ForestillingNr 
-                ORDER BY COUNT(Billett.BillettID)''')
     
-    print(f"{'-' * 10} Forestillinger og antall billetter solgt {'-' * 10}")
-    for row in cur.fetchall():
-        print(f" {row[0]}, {row[1]} | Billetter solgt: {row[2]}")
-        
-    con.close()
+# actors_same_act("Synnøve Fossum Eriksen")
 
-tickets_sold()
+
+
