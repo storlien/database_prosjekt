@@ -1,10 +1,26 @@
-import sqlite3
+import sqlite3, config
 from datetime import datetime
 
+from api.validator import Validator
 
 class TicketMaster:
-    def __init__(self, db_path="teater.db"):
+
+    def __init__(self, db_path=config.DEFAULT_DB):
         self.db_path = db_path
+        self.validator = Validator(db_path)
+
+    def get_play_id(self, play_name, season_id):
+        with sqlite3.connect(self.db_path) as con:
+            cur = con.cursor()
+            cur.execute(
+                """
+                SELECT StykkeID
+                FROM Teaterstykke
+                WHERE Tittel = ? AND SesongID = ?
+                """,
+                (play_name, season_id),
+            )
+            return cur.fetchone()
 
     def get_section_ids(self, play_id):
         with sqlite3.connect(self.db_path) as con:
@@ -76,7 +92,7 @@ class TicketMaster:
             )
             return cur.lastrowid
 
-    def reserve_seats(self, kjop_id, section_id, row_number, n, play_id, act_no, customer_group):
+    def reserve_seats(self, kjop_id: int, section_id: int, row_number: int, n: int, play_id: int, act_no: int, customer_group: str):
         with sqlite3.connect(self.db_path) as con:
             cur = con.cursor()
             for _ in range(n):
@@ -136,3 +152,45 @@ class TicketMaster:
             return f"{n} tickets reserved in section {section} on row {row_number} for '{play_name}' on {date}."
         else:
             return "No available seats found."
+
+    def admin_create_billett_kjop(self):
+        return self.create_billett_kjop(config.ADMIN_PHONE_NUMBER)
+
+    def admin_reserve_tickets(self, play_name: str, date: str, section: str, bought_seats: list, kjop_id: int = None, season_id: int = 1):
+        if kjop_id is None:
+            kjop_id = self.create_billett_kjop(config.ADMIN_PHONE_NUMBER)
+
+        play_id, act_no = self.get_play_id_and_act_no(play_name, date)
+
+        for row_number, seat_number in bought_seats:
+            self.reserve_single_seat(kjop_id, play_id, act_no, section, seat_number, row_number, "Admin")
+        
+    def reserve_single_seat(self, kjop_id: int, play_id: int, act_id: int, section_id: int, seat_no: int, row_no: int, customer_group: str):
+        with sqlite3.connect(self.db_path) as con:
+            cur = con.cursor()
+            cur.execute(
+                """
+                INSERT INTO Billett (KjopID, StykkeID, ForestillingNr, KundeGruppe, OmraadeID, SeteNr, RadNr)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+                """,
+                (kjop_id, play_id, act_id, customer_group, section_id, seat_no, row_no),
+            )
+            con.commit()
+
+    def which_play(self, hall, date, season_id):
+        with sqlite3.connect(self.db_path) as con:
+            cur = con.cursor()
+            cur.execute(
+                """
+                SELECT Tittel
+                FROM Teaterstykke
+                WHERE SalNr = (SELECT SalNr FROM Teatersal WHERE SalNavn = ?)
+                AND StykkeID IN (
+                    SELECT StykkeID
+                    FROM Forestilling
+                    WHERE Dato = ?
+                ) AND SesongID = ?
+                """,
+                (hall, date, season_id),
+            )
+            return cur.fetchone()

@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3, config
 
 '''
 
@@ -8,7 +8,7 @@ Finds all plays on a given date and prints the title of the play, the time of th
 Template: find_plays("2024-02-03")
 
 '''
-def find_plays(date, db: str = "teater.db"):
+def find_plays(date, db: str = config.DEFAULT_DB):
     con = sqlite3.connect(db)
     cur = con.cursor()
     cur.execute(f'''SELECT Teaterstykke.Tittel, Forestilling.Tid, COUNT(Billett.BillettID) 

@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3, config
 
 '''
 
@@ -7,7 +7,7 @@ Brukstilfelle 5
 Finds all actors and the roles they play in the plays and prints the title of the play, the actor and the role.
 
 ''' 
-def find_actors(db: str = "teater.db"):
+def find_actors(db: str = config.DEFAULT_DB):
     con = sqlite3.connect(db)
     cur = con.cursor()
     cur.execute('''SELECT DISTINCT Teaterstykke.Tittel, Ansatt.Navn, Rolle.Navn 

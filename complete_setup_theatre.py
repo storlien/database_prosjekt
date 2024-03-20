@@ -1,10 +1,8 @@
-import os
-import sys
-import sqlite3
+import os, sys, sqlite3, config
 from setup.insert_seats_hovedscenen import insert_seats as insert_seats_hovedscenen
 from setup.insert_seats_gamle_scene import insert_seats as insert_seats_gamle_scene
 
-def main(db_name: str = "teater.db"):
+def main(db_name: str = config.DEFAULT_DB):
     arguments = sys.argv[1:]
 
     if len(arguments) == 0:
@@ -48,7 +46,7 @@ def main(db_name: str = "teater.db"):
     insert_seats_hovedscenen(db)
     insert_seats_gamle_scene(db)
 
-def teardown(db: str = "teater.db"):
+def teardown(db: str = config.DEFAULT_DB):
     try:
         if os.path.exists(db):
             os.remove(db)

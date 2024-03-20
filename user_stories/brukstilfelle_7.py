@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3, config
 
 '''
 
@@ -7,7 +7,7 @@ Brukstielle 7
 Finds the actors that play in the same act as input actor and prints the title of the play and the actors.
 
 '''
-def actors_same_act(actor, db: str = "teater.db") -> None:
+def actors_same_act(actor, db: str = config.DEFAULT_DB) -> None:
     con = sqlite3.connect(db)
     cur = con.cursor()
     query = f"""

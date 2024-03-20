@@ -1,8 +1,8 @@
+import config
 import sqlite3
 
-
 class PriceCalculator:
-    def __init__(self, db_path="teater.db"):
+    def __init__(self, db_path=config.DEFAULT_DB):
         self.db_path = db_path
 
     def get_purchase_id(self, phone_number, play_name, date):

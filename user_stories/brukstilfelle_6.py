@@ -1,4 +1,4 @@
-import sqlite3
+import sqlite3, config
 
 '''
 
@@ -8,7 +8,7 @@ Finds all plays and the number of tickets sold for the play and prints the title
 Sorted on number of tickets sold in descending order.
 
 '''
-def tickets_sold(db: str = "teater.db"):
+def tickets_sold(db: str = config.DEFAULT_DB):
     con = sqlite3.connect(db)
     cur = con.cursor()
     cur.execute('''SELECT Teaterstykke.Tittel, Forestilling.Dato, Forestilling.Tid, COUNT(Billett.BillettID) 
