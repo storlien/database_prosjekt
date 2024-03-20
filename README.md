@@ -89,19 +89,35 @@ Brukstilfelle 1 ble løst i de foregående stegene der databasefilen ble satt op
 
 ### Brukstilfelle 4: Oversikt over forestillinger og solgte stoler
 
-//TODO
+For å skrive ut alle forestillinger og solgte stoler, kjør kommando:
+
+```zsh
+python user_stories/tickets_sold_by_play.py
+```
 
 ### Brukstilfelle 5: Hvilke skuespillere spiller på hvilke forestillinger
 
-//TODO
+For å skrive ut alle forestillinger og skuespillere, kjør kommando:
+
+```zsh
+python user_stories/actors_on_roles.py
+```
 
 ### Brukstilfelle 6: Hvilke forestillinger har solgt best
 
-//TODO
+For å skrive ut hvilken forestilling som har solgt best, kjør kommando:
+
+```zsh
+python user_stories/tickets_sold_by_play.py
+```
 
 ### Brukstilfelle 7: Hvilke skuespillere har spilt i samme akt
 
-//TODO
+For å skrive ut hvilke skuespillere som har spilt i samme akt, kjør kommando:
+
+```zsh
+python user_stories/actors_same_act.py
+```
 
 ## Forutsetninger eller andre merknader
 
