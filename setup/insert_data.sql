@@ -327,3 +327,7 @@ VALUES
 (2, 4, '2024-02-12', '18:30'),
 (2, 5, '2024-02-13', '18:30'),
 (2, 6, '2024-02-14', '18:30');
+
+INSERT INTO KundeProfil (Mobilnummer, Navn, Adresse)
+VALUES
+('55555555', 'Admin', 'Adminveien 1')

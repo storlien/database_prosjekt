@@ -5,7 +5,7 @@ PARKETT_SECTION_ID = 3
 BALKONG_SECTION_ID = 4
 GALLERI_SECTION_ID = 5
 
-number_of_seats_parkett = {
+NO_SEATS_PARKETT = {
     1: 18,
     2: 16,
     3: 17,
@@ -18,14 +18,14 @@ number_of_seats_parkett = {
     10: 14
 }
 
-number_of_seats_balkong = {
+NO_SEATS_BALKONG = {
     1: 28,
     2: 27,
     3: 22,
     4: 17
 }
 
-number_of_seats_galleri = {
+NO_SEATS_GALLERI = {
     1: 33,
     2: 18,
     3: 17
@@ -50,6 +50,7 @@ def main():
 
 def insert_seats(db):
 
+    print("Inserting seats into the database...")
     print("Database file:", db)
     print("Parkett section ID:", PARKETT_SECTION_ID)
     print("Balkong section ID:", BALKONG_SECTION_ID)
@@ -61,25 +62,26 @@ def insert_seats(db):
     # Parkett
     for rowNo in range(1, 11):
         
-        for seatNo in range(1, number_of_seats_parkett.get(rowNo) + 1):
+        for seatNo in range(1, NO_SEATS_PARKETT.get(rowNo) + 1):
             con.execute(f"INSERT INTO Sete (SeteNr, RadNr, OmraadeID) VALUES ({seatNo}, {rowNo}, {PARKETT_SECTION_ID})")
 
     # Balkong
     for rowNo in range(1, 5):
         
-        for seatNo in range(1, number_of_seats_balkong.get(rowNo) + 1):
+        for seatNo in range(1, NO_SEATS_BALKONG.get(rowNo) + 1):
             con.execute(f"INSERT INTO Sete (SeteNr, RadNr, OmraadeID) VALUES ({seatNo}, {rowNo}, {BALKONG_SECTION_ID})")
   
     # Galleri
     for rowNo in range(1, 4):
         
-        for seatNo in range(1, number_of_seats_galleri.get(rowNo) + 1):
+        for seatNo in range(1, NO_SEATS_GALLERI.get(rowNo) + 1):
             con.execute(f"INSERT INTO Sete (SeteNr, RadNr, OmraadeID) VALUES ({seatNo}, {rowNo}, {GALLERI_SECTION_ID})")
     
     con.commit()
     con.close()
 
-    print("Seats successfully inserted into the database")
+    print("Seats successfully inserted into the database!")
+    print()
 
 if __name__ == "__main__":
     main()
