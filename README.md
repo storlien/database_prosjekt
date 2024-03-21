@@ -8,10 +8,17 @@ Det forutsettes at du har installert Python (versjon 3) og SQLite (versjon 3) fo
 1. Kjør kommando i terminalen: 
 
 ```zsh
-python3 complete_setup_theatre.py teater.db
+python3 complete_setup_theatre.py
 ```
 
-Dette skriptet lager en databasefil kalt teater.db, setter opp alle tabeller og setter inn data for to teaterstykker i henhold til prosjektbeskrivelsen og informasjon fra nettsiden til Trøndelag Teater.
+Dette skriptet lager en databasefil, setter opp alle tabeller og setter inn data for to teaterstykker i henhold til prosjektbeskrivelsen og informasjon fra nettsiden til Trøndelag Teater.
+
+Dersom det ikke oppgis et filnavn til databasefilen, blir den kalt 'teater.db'.
+For å gi et annet filnavn, sleng på filnavnet etter skriptnavnet. F.eks.
+
+```zsh
+python3 complete_setup_theatre.py database.db
+```
 
 **Det er nå klart for å interagere med databasen!**
 
