@@ -1,4 +1,6 @@
-import sys, config
+import sys, os
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+import config
 import sqlite3
 
 def main():
@@ -15,6 +17,10 @@ def main():
         return
     
     db = arguments[0].strip()
+
+    if not os.path.exists(db):
+        print("No such file found:", db)
+        return
 
     insert_seats(db)
 

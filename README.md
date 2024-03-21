@@ -88,11 +88,25 @@ Brukstilfelle 1 ble løst i de foregående stegene der databasefilen ble satt op
 
 ### Brukstilfelle 2: Lesing av fil med kjøpte seter
 
-//TODO
+Følgende skript leser en fil med hvilke seter som er kjøpt til en forestilling med en gitt dato. Det opprettes et kjøp på adminbrukeren.
+
+Her antas det at skriptet blir kjørt når det er ledige billetter på de gitte seten. Det vil si, vi antar at dette skriptet blir kjørt initielt i en forestilling av en administrator for å reservere seter eller lignende.
+
+1. Kjør kommando for Gamle scene:
+
+```zsh
+python3 scan_seats.py seats_bought/gamle-scene.txt "Gamle scene"
+```
+
+2. Kjør kommando for Hovedscenen:
+
+```zsh
+python3 scan_seats.py seats_bought/hovedscenen.txt "Hovedscenen"
+```
 
 ### Brukstilfelle 3: Kjøp av stoler til forestilling
 
-For å kjøpe 9 stoler til forestilling "Størst av alt er kjærligheten", den 9ende februar for seter med alle stoler på samme rad, kjør kommando:
+For å kjøpe 9 stoler til forestilling "Størst av alt er kjærligheten", den 9. februar for seter med alle stoler på samme rad, kjør kommando:
 
 ```zsh
 python3 user_stories/brukstilfelle_3.py
@@ -100,7 +114,7 @@ python3 user_stories/brukstilfelle_3.py
 
 Man må selv sette inn alle verdiene.
 
-## Brukergrensesnitt brukstilfelle 4-7
+### Brukergrensesnitt brukstilfelle 4-7
 
 For kjøre brukstilfellene 4-7 med et grensesnitt i terminalen, kjør kommando:
 

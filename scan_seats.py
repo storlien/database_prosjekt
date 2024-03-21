@@ -1,3 +1,4 @@
+import os
 from api.ticketmaster import TicketMaster
 from api.validator import Validator
 import sys, config
@@ -36,6 +37,10 @@ def main():
     
     filename = arguments[0]
 
+    if not os.path.exists(filename):
+        print("No such file found:", filename)
+        return
+
     try:
         with open(filename, "r") as file:
             lines = file.readlines()
@@ -57,6 +62,10 @@ def main():
         return
     
     db = config.DEFAULT_DB if len(arguments) == 2 else arguments[2]
+
+    if not os.path.exists(db):
+        print("No such file found:", db)
+        return
 
     vd = Validator(db)
     tm = TicketMaster(db)
