@@ -172,5 +172,4 @@ Baard Bratte var ikke satt opp på noen akter i tabellen i prosjektbeskrivelsen,
 
 - Endret kardinalitet (0,n) under Teatersal i diagrammet. Må kunne sette opp sal uten stykke.
 - Lagt til SkrevetAv på Teaterstykke
-- Byttet fra Billettype til KundeGruppe i Billett
 - Endret fra ForGruppe til BillettPriser

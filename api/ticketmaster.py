@@ -176,7 +176,7 @@ class TicketMaster:
                 kjop_id,
             )
         else:
-            return "Ingen tilgjengelige seter funnet.", None
+            return f"Ingen tilgjengelige seter funnet for {play_name} at {date_str}", None
 
     def admin_create_billett_kjop(self):
         return self.create_billett_kjop(config.ADMIN_PHONE_NUMBER)
