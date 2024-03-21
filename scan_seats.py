@@ -11,7 +11,6 @@ play_id = 0
 act_no = 0
 date = ""
 
-
 def main():
     global sliced_lines
     global hall
@@ -88,7 +87,6 @@ def main():
 
     print("Successfully reserved seats for", play, "on", date, "in", hall)
 
-
 def get_date(lines):
     if "Dato" in lines[0]:
         words = lines[0].split()
@@ -123,7 +121,6 @@ def get_date(lines):
         print("Date not found")
         return None, None, None
 
-
 def find_section_and_seats(tm: TicketMaster):
     global sliced_lines
 
@@ -151,10 +148,32 @@ def find_section_and_seats(tm: TicketMaster):
             return tuple_list
 
     elif hall == config.HALL_HOVEDSCENEN:
-        # TODO
-        return (0,0,0,0)
 
+        tuple_list_corrected_seat_no = []
+        
+        if config.SECTION_HOVEDSCENEN_GALLERI in section_line:
 
+            tuple_list = get_seats_to_reserve(sliced_lines, config.NO_ROWS_GALLERI_HOVEDSCENEN, config.HOVEDSCENEN_GALLERI_SECTION_ID)
+
+            for seat_tuple in tuple_list:
+                new_seat_no = 504 + seat_tuple[5] + (seat_tuple[4] - 1) * 5
+                tuple_list_corrected_seat_no.append((seat_tuple[0], seat_tuple[1], seat_tuple[2], seat_tuple[3], seat_tuple[4], new_seat_no))
+
+            sliced_lines = sliced_lines[config.NO_ROWS_GALLERI_HOVEDSCENEN:]
+            return tuple_list
+        
+        elif config.SECTION_HOVEDSCENEN_PARKETT in section_line:
+
+            tuple_list = get_seats_to_reserve(sliced_lines, config.NO_ROWS_PARKETT_HOVEDSCENEN, config.HOVEDSCENEN_PARKETT_SECTION_ID)
+
+            for seat_tuple in tuple_list:
+                new_seat_no = seat_tuple[5] + (seat_tuple[4] - 1) * 28
+                tuple_list_corrected_seat_no.append((seat_tuple[0], seat_tuple[1], seat_tuple[2], seat_tuple[3], seat_tuple[4], new_seat_no))
+
+            sliced_lines = sliced_lines[config.NO_ROWS_PARKETT_HOVEDSCENEN:]
+            return tuple_list
+
+# Returns a list of tuples with play_id, act_no, customer_group, section_id, row_no, seat_no to be reserved
 def get_seats_to_reserve(sliced_lines, no_rows, section_id):
 
     tuple_list = []
@@ -164,7 +183,7 @@ def get_seats_to_reserve(sliced_lines, no_rows, section_id):
         
         for index_seat in range(len(seats)):
 
-            if seats[index_seat].lower() == "x":
+            if not seats[index_seat].isdigit():
                 continue
 
             if int(seats[index_seat]) == 1:
@@ -172,7 +191,6 @@ def get_seats_to_reserve(sliced_lines, no_rows, section_id):
                 tuple_list.append(seat_tuple)
     
     return tuple_list
-
 
 if __name__ == "__main__":
     main()
