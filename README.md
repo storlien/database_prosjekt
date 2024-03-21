@@ -87,6 +87,16 @@ Brukstilfelle 1 ble løst i de foregående stegene der databasefilen ble satt op
 
 //TODO
 
+### Brukergrensesnitt brukstilfelle 4-7
+
+For kjøre brukstilfellene 4-7 med et grensesnitt i terminalen, kjør kommando:
+
+```zsh
+python3 user_stories/brukstilfelle.py
+```
+
+Videre er det kommandoer for å kjøre brukstilfelle 4-7 direkte:
+
 ### Brukstilfelle 4: Oversikt over forestillinger og solgte stoler en gitt dato
 
 For å skrive ut alle forestillinger og solgte stoler en gitt dato, kjør kommando:
