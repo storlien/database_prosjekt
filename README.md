@@ -3,6 +3,14 @@ Prosjekt i faget TDT4145: Datamodellering og databasesystemer
 
 Det forutsettes at du har installert Python (versjon 3) og SQLite (versjon 3) for å kunne utføre stegene.
 
+# Forfattere - DB2 gruppe 14
+
+- Edward Storlien
+- Olav Larsen Halleraker
+- Mikael Steenbuch
+
+
+
 ## Mappestruktur - kort forklaring
 
 - `/api` inneholder klasser som håndterer spørringer relatert til brukerhistorie 1-3
@@ -14,6 +22,9 @@ Det forutsettes at du har installert Python (versjon 3) og SQLite (versjon 3) fo
 - `/user_stories` ligger alle skripts som besvarer hver enkelt brukerhistorie. Mer om hvordan vi interagerer med disse brukerhistoriene kommer under.
 
 NB: `scan_seats` ligger i rotmappa da vi ser på denne som essensiell for de fleste *user_stories*
+
+`eksempelkjoring.txt` viser innholdet i hvordan en kjøring av `python user_stories/brukertilfelle.py` vil se ut. Dette programmet kjøres i en loop, og her har vi printet ut outoput fra interaksjoner med skript som håndterer brukerhistoriene fra 3-7.
+
 
 ## Hvordan raskt sette opp alle tabeller med innsetting av data
 

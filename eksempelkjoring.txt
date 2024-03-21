@@ -1,0 +1,367 @@
+Velkommen til teaterdatabasen!
+Velg et script å kjøre:
+3 - Brukstilfelle 3; kjøp billett til forestilling
+4 - Brukstilfelle 4; alle forestillinger og antall billetter solgt for en gitt dato
+5 - Brukstilfelle 5; alle skuespillere og rollene de spiller i stykkene
+6 - Brukstilfelle 6; alle forestillinger og antall billetter solgt for hver forestilling
+7 - Brukstilfelle 7; alle skuespillere som spiller i samme akt som en gitt skuespiller
+0 - Exit
+Skriv inn valget ditt:3
+Skriv inn stykkets navn (standard: Størst av alt er kjærligheten): 
+Skriv inn datoen (ÅÅÅÅ-MM-DD, standard: 2024-02-03): 
+
+-> Mulige seksjoner for Gamle scene er: Parkett, Balkong, Galleri
+Skriv inn seksjonsnavnet (standard: Parkett): 
+Skriv inn antall billetter (standard: 9): 
+Skriv inn ditt telefonnummer (8 siffer): 87654321
+Brukeren eksisterer ikke. Vennligst registrer navn og addresse.
+Skriv inn kundens navn: Mikael
+Skriv inn kundens adresse: Tester
+Skriv inn kundegruppen for billett 1 (standard: Ordinær):      
+Skriv inn kundegruppen for billett 2 (standard: Ordinær): 
+Skriv inn kundegruppen for billett 3 (standard: Ordinær): 
+Skriv inn kundegruppen for billett 4 (standard: Ordinær): Student
+Skriv inn kundegruppen for billett 5 (standard: Ordinær): Honnør
+Skriv inn kundegruppen for billett 6 (standard: Ordinær): 
+Skriv inn kundegruppen for billett 7 (standard: Ordinær): 
+Skriv inn kundegruppen for billett 8 (standard: Ordinær): 
+Skriv inn kundegruppen for billett 9 (standard: Ordinær): 
+9 billetter reservert i seksjon Parkett på rad 1 for 'Størst av alt er kjærligheten' den 2024-02-03.
+
+Den totalen prisen for kjøpet er: 2970 kr.
+Trykk enter for å fortsette.
+Velg et script å kjøre:
+3 - Brukstilfelle 3; kjøp billett til forestilling
+4 - Brukstilfelle 4; alle forestillinger og antall billetter solgt for en gitt dato
+5 - Brukstilfelle 5; alle skuespillere og rollene de spiller i stykkene
+6 - Brukstilfelle 6; alle forestillinger og antall billetter solgt for hver forestilling
+7 - Brukstilfelle 7; alle skuespillere som spiller i samme akt som en gitt skuespiller
+0 - Exit
+Skriv inn valget ditt:4
+Hvilken dato vil du finne forestillinger for? (YYYY-MM-DD), default er 2024-02-03:
+Default brukt: 2024-02-03
+
+---------- Forestillinger 2024-02-03 ----------
+Størst av alt er kjærligheten, 18:30 | Billetter solgt: 36
+Kongsemnene, 19:00 | Billetter solgt: 65
+Trykk enter for å fortsette. 
+Velg et script å kjøre:
+3 - Brukstilfelle 3; kjøp billett til forestilling
+4 - Brukstilfelle 4; alle forestillinger og antall billetter solgt for en gitt dato
+5 - Brukstilfelle 5; alle skuespillere og rollene de spiller i stykkene
+6 - Brukstilfelle 6; alle forestillinger og antall billetter solgt for hver forestilling
+7 - Brukstilfelle 7; alle skuespillere som spiller i samme akt som en gitt skuespiller
+0 - Exit
+Skriv inn valget ditt:5
+---------- Skuespillere og roller ----------
+Stykke: Kongsemnene 
+Skuespiller: Arturo Scotti 
+Rolle: Haakon Haakonssønn
+-
+Stykke: Kongsemnene 
+Skuespiller: Emil Olafsson 
+Rolle: Dagfinn Bonde
+-
+Stykke: Kongsemnene 
+Skuespiller: Emil Olafsson 
+Rolle: Jatgeir Skald
+-
+Stykke: Kongsemnene 
+Skuespiller: Emma Caroline Deichmann 
+Rolle: Sigrid
+-
+Stykke: Kongsemnene 
+Skuespiller: Emma Caroline Deichmann 
+Rolle: Ingebjørg
+-
+Stykke: Kongsemnene 
+Skuespiller: Hans Petter Nilsen 
+Rolle: Skule jarl
+-
+Stykke: Kongsemnene 
+Skuespiller: Ingunn Beate Strige Øyen 
+Rolle: Inga fra Vartejg
+-
+Stykke: Kongsemnene 
+Skuespiller: Isak Holmen Sørensen 
+Rolle: Paal Flida
+-
+Stykke: Kongsemnene 
+Skuespiller: Madeleine Brandtzæg Nilsen 
+Rolle: Fru Ragnhild
+-
+Stykke: Kongsemnene 
+Skuespiller: Per Bogstad Gulliksen 
+Rolle: Gregorius Jonssønn
+-
+Stykke: Kongsemnene 
+Skuespiller: Synnøve Fossum Eriksen 
+Rolle: Margrete
+-
+Stykke: Kongsemnene 
+Skuespiller: Thomas Jensen Takyi 
+Rolle: Biskop Nikolas
+-
+Stykke: Kongsemnene 
+Skuespiller: Snorre Ryen Tøndel 
+Rolle: Peter
+-
+Stykke: Kongsemnene 
+Skuespiller: Isak Holmen Sørensen 
+Rolle: Trønder
+-
+Stykke: Kongsemnene 
+Skuespiller: Fabian Heidelberg Lunde 
+Rolle: Trønder
+-
+Stykke: Kongsemnene 
+Skuespiller: Fabian Heidelberg Lunde 
+Rolle: Baard Bratte
+-
+Stykke: Størst av alt er kjærligheten 
+Skuespiller: Sunniva Du Mond Nordal 
+Rolle: Sunniva Du Mond Nordal
+-
+Stykke: Størst av alt er kjærligheten 
+Skuespiller: Jo Saberniak 
+Rolle: Jo Saberniak
+-
+Stykke: Størst av alt er kjærligheten 
+Skuespiller: Marte M. Steinholt 
+Rolle: Marte M. Steinholt
+-
+Stykke: Størst av alt er kjærligheten 
+Skuespiller: Tor Ivar Hagen 
+Rolle: Tor Ivar Hagen
+-
+Stykke: Størst av alt er kjærligheten 
+Skuespiller: Trond-Ove Skrødal 
+Rolle: Trond-Ove Skrødal
+-
+Stykke: Størst av alt er kjærligheten 
+Skuespiller: Natalie Grøndahl Tangen 
+Rolle: Natalie Grøndahl Tangen
+-
+Stykke: Størst av alt er kjærligheten 
+Skuespiller: Åsmund Flaten 
+Rolle: Åsmund Flaten
+-
+Trykk enter for å fortsette.
+Velg et script å kjøre:
+3 - Brukstilfelle 3; kjøp billett til forestilling
+4 - Brukstilfelle 4; alle forestillinger og antall billetter solgt for en gitt dato
+5 - Brukstilfelle 5; alle skuespillere og rollene de spiller i stykkene
+6 - Brukstilfelle 6; alle forestillinger og antall billetter solgt for hver forestilling
+7 - Brukstilfelle 7; alle skuespillere som spiller i samme akt som en gitt skuespiller
+0 - Exit
+Skriv inn valget ditt:6
+---------- Forestillinger og antall billetter solgt. Sortert synkende. ----------
+ Kongsemnene | 2024-02-03 | 19:00 | Billetter solgt: 65 
+ Størst av alt er kjærligheten | 2024-02-03 | 18:30 | Billetter solgt: 36 
+ Kongsemnene | 2024-02-01 | 19:00 | Billetter solgt: 0 
+ Kongsemnene | 2024-02-02 | 19:00 | Billetter solgt: 0 
+ Kongsemnene | 2024-02-05 | 19:00 | Billetter solgt: 0 
+ Kongsemnene | 2024-02-06 | 19:00 | Billetter solgt: 0 
+ Størst av alt er kjærligheten | 2024-02-06 | 18:30 | Billetter solgt: 0 
+ Størst av alt er kjærligheten | 2024-02-07 | 18:30 | Billetter solgt: 0 
+ Størst av alt er kjærligheten | 2024-02-12 | 18:30 | Billetter solgt: 0 
+ Størst av alt er kjærligheten | 2024-02-13 | 18:30 | Billetter solgt: 0 
+ Størst av alt er kjærligheten | 2024-02-14 | 18:30 | Billetter solgt: 0 
+Trykk enter for å fortsette.
+Velg et script å kjøre:
+3 - Brukstilfelle 3; kjøp billett til forestilling
+4 - Brukstilfelle 4; alle forestillinger og antall billetter solgt for en gitt dato
+5 - Brukstilfelle 5; alle skuespillere og rollene de spiller i stykkene
+6 - Brukstilfelle 6; alle forestillinger og antall billetter solgt for hver forestilling
+7 - Brukstilfelle 7; alle skuespillere som spiller i samme akt som en gitt skuespiller
+0 - Exit
+Skriv inn valget ditt:7
+Hvilken skuespiller vil du finne andre skuespillere som spiller i samme akt som? (Fornavn Etternavn). Defualt er Synnøve Fossum Eriksen:
+Default brukt: Synnøve Fossum Eriksen
+
+----- Skuespillere som spiller i samme akt som Synnøve Fossum Eriksen -----
+Stykke: Kongsemnene 
+Akt: 1 
+Skuespiller: Arturo Scotti
+-
+Stykke: Kongsemnene 
+Akt: 1 
+Skuespiller: Emil Olafsson
+-
+Stykke: Kongsemnene 
+Akt: 1 
+Skuespiller: Emma Caroline Deichmann
+-
+Stykke: Kongsemnene 
+Akt: 1 
+Skuespiller: Fabian Heidelberg Lunde
+-
+Stykke: Kongsemnene 
+Akt: 1 
+Skuespiller: Hans Petter Nilsen
+-
+Stykke: Kongsemnene 
+Akt: 1 
+Skuespiller: Ingunn Beate Strige Øyen
+-
+Stykke: Kongsemnene 
+Akt: 1 
+Skuespiller: Isak Holmen Sørensen
+-
+Stykke: Kongsemnene 
+Akt: 1 
+Skuespiller: Madeleine Brandtzæg Nilsen
+-
+Stykke: Kongsemnene 
+Akt: 1 
+Skuespiller: Per Bogstad Gulliksen
+-
+Stykke: Kongsemnene 
+Akt: 1 
+Skuespiller: Thomas Jensen Takyi
+-
+Stykke: Kongsemnene 
+Akt: 2 
+Skuespiller: Arturo Scotti
+-
+Stykke: Kongsemnene 
+Akt: 2 
+Skuespiller: Emil Olafsson
+-
+Stykke: Kongsemnene 
+Akt: 2 
+Skuespiller: Emma Caroline Deichmann
+-
+Stykke: Kongsemnene 
+Akt: 2 
+Skuespiller: Fabian Heidelberg Lunde
+-
+Stykke: Kongsemnene 
+Akt: 2 
+Skuespiller: Hans Petter Nilsen
+-
+Stykke: Kongsemnene 
+Akt: 2 
+Skuespiller: Isak Holmen Sørensen
+-
+Stykke: Kongsemnene 
+Akt: 2 
+Skuespiller: Per Bogstad Gulliksen
+-
+Stykke: Kongsemnene 
+Akt: 2 
+Skuespiller: Thomas Jensen Takyi
+-
+Stykke: Kongsemnene 
+Akt: 3 
+Skuespiller: Arturo Scotti
+-
+Stykke: Kongsemnene 
+Akt: 3 
+Skuespiller: Emil Olafsson
+-
+Stykke: Kongsemnene 
+Akt: 3 
+Skuespiller: Fabian Heidelberg Lunde
+-
+Stykke: Kongsemnene 
+Akt: 3 
+Skuespiller: Hans Petter Nilsen
+-
+Stykke: Kongsemnene 
+Akt: 3 
+Skuespiller: Ingunn Beate Strige Øyen
+-
+Stykke: Kongsemnene 
+Akt: 3 
+Skuespiller: Isak Holmen Sørensen
+-
+Stykke: Kongsemnene 
+Akt: 3 
+Skuespiller: Per Bogstad Gulliksen
+-
+Stykke: Kongsemnene 
+Akt: 3 
+Skuespiller: Snorre Ryen Tøndel
+-
+Stykke: Kongsemnene 
+Akt: 3 
+Skuespiller: Thomas Jensen Takyi
+-
+Stykke: Kongsemnene 
+Akt: 4 
+Skuespiller: Arturo Scotti
+-
+Stykke: Kongsemnene 
+Akt: 4 
+Skuespiller: Emil Olafsson
+-
+Stykke: Kongsemnene 
+Akt: 4 
+Skuespiller: Emma Caroline Deichmann
+-
+Stykke: Kongsemnene 
+Akt: 4 
+Skuespiller: Fabian Heidelberg Lunde
+-
+Stykke: Kongsemnene 
+Akt: 4 
+Skuespiller: Hans Petter Nilsen
+-
+Stykke: Kongsemnene 
+Akt: 4 
+Skuespiller: Isak Holmen Sørensen
+-
+Stykke: Kongsemnene 
+Akt: 4 
+Skuespiller: Per Bogstad Gulliksen
+-
+Stykke: Kongsemnene 
+Akt: 4 
+Skuespiller: Snorre Ryen Tøndel
+-
+Stykke: Kongsemnene 
+Akt: 5 
+Skuespiller: Arturo Scotti
+-
+Stykke: Kongsemnene 
+Akt: 5 
+Skuespiller: Emil Olafsson
+-
+Stykke: Kongsemnene 
+Akt: 5 
+Skuespiller: Emma Caroline Deichmann
+-
+Stykke: Kongsemnene 
+Akt: 5 
+Skuespiller: Fabian Heidelberg Lunde
+-
+Stykke: Kongsemnene 
+Akt: 5 
+Skuespiller: Hans Petter Nilsen
+-
+Stykke: Kongsemnene 
+Akt: 5 
+Skuespiller: Isak Holmen Sørensen
+-
+Stykke: Kongsemnene 
+Akt: 5 
+Skuespiller: Madeleine Brandtzæg Nilsen
+-
+Stykke: Kongsemnene 
+Akt: 5 
+Skuespiller: Per Bogstad Gulliksen
+-
+Stykke: Kongsemnene 
+Akt: 5 
+Skuespiller: Snorre Ryen Tøndel
+-
+Trykk enter for å fortsette.
+Velg et script å kjøre:
+3 - Brukstilfelle 3; kjøp billett til forestilling
+4 - Brukstilfelle 4; alle forestillinger og antall billetter solgt for en gitt dato
+5 - Brukstilfelle 5; alle skuespillere og rollene de spiller i stykkene
+6 - Brukstilfelle 6; alle forestillinger og antall billetter solgt for hver forestilling
+7 - Brukstilfelle 7; alle skuespillere som spiller i samme akt som en gitt skuespiller
+0 - Exit
+Skriv inn valget ditt:
