@@ -11,14 +11,7 @@ Det forutsettes at du har installert Python (versjon 3) og SQLite (versjon 3) fo
 python3 complete_setup_theatre.py
 ```
 
-Dette skriptet lager en databasefil, setter opp alle tabeller og setter inn data for to teaterstykker i henhold til prosjektbeskrivelsen og informasjon fra nettsiden til Trøndelag Teater.
-
-Dersom det ikke oppgis et filnavn til databasefilen, blir den kalt 'teater.db'.
-For å gi et annet filnavn, sleng på filnavnet etter skriptnavnet. F.eks.
-
-```zsh
-python3 complete_setup_theatre.py database.db
-```
+Dette skriptet lager en databasefil som heter **teater.db** i rotmappa, setter opp alle tabeller og setter inn data for to teaterstykker i henhold til prosjektbeskrivelsen og informasjon fra nettsiden til Trøndelag Teater.
 
 **Det er nå klart for å interagere med databasen!**
 
@@ -88,7 +81,7 @@ Brukstilfelle 1 ble løst i de foregående stegene der databasefilen ble satt op
 
 ### Brukstilfelle 2: Lesing av fil med kjøpte seter
 
-Følgende skript leser en fil med hvilke seter som er kjøpt til en forestilling med en gitt dato. Det opprettes et kjøp på adminbrukeren.
+Følgende skript leser en fil med hvilke seter som er kjøpt til en forestilling med en gitt dato. Det opprettes et kjøp på adminbrukeren med navn *Admin*, telefonnummer *55555555* og adresse *Admingata 1*.
 
 Her antas det at skriptet blir kjørt når det er ledige billetter på de gitte seten. Det vil si, vi antar at dette skriptet blir kjørt initielt i en forestilling av en administrator for å reservere seter eller lignende.
 
