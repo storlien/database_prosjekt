@@ -240,3 +240,21 @@ class TicketMaster:
                 (hall, date, season_id),
             )
             return cur.fetchone()
+
+    def get_hall_by_play(self, play: str):
+        with sqlite3.connect(self.db_path) as con:
+            cur = con.cursor()
+            cur.execute(
+                """
+                SELECT SalNavn
+                FROM Teatersal
+                WHERE SalNr = (
+                    SELECT SalNr
+                    FROM Teaterstykke
+                    WHERE Tittel = ?
+                )
+                """,
+                (play,),
+            )
+            result = cur.fetchone()
+            return result[0] if result else None
