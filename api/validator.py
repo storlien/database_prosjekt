@@ -13,13 +13,13 @@ class Validator:
     def validate_hall(self, hall: str):
         with sqlite3.connect(self.db_path) as con:
             cur = con.cursor()
-            cur.execute("SELECT * FROM Teatersal WHERE SalNavn = ?", (hall))
+            cur.execute("SELECT * FROM Teatersal WHERE SalNavn = ?", (hall,))
             return cur.fetchone() is not None
     
     def validate_section(self, hall, section: str):
         with sqlite3.connect(self.db_path) as con:
             cur = con.cursor()
-            cur.execute("SELECT * FROM Teatersal WHERE SalNavn = ?", (hall))
+            cur.execute("SELECT * FROM Teatersal WHERE SalNavn = ?", (hall,))
             hall_id = cur.fetchone()[0]
             cur.execute("SELECT * FROM Omraade WHERE Navn = ? AND SalNr = ?", (section,hall_id))
             return cur.fetchone() is not None

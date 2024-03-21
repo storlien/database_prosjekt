@@ -177,6 +177,20 @@ class TicketMaster:
             )
             con.commit()
 
+    # seats_to_reserve is a tuple with play_id, act_no, customer_group, section_id, row_no, seat_no to be reserved
+    def reserve_seat_list(self, kjop_id: int, seats_to_reserve: list):
+        with sqlite3.connect(self.db_path) as con:
+            cur = con.cursor()
+            for seat in seats_to_reserve:
+                cur.execute(
+                    """
+                    INSERT INTO Billett (KjopID, StykkeID, ForestillingNr, KundeGruppe, OmraadeID, SeteNr, RadNr)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    (kjop_id, *seat,),
+                )
+            con.commit()
+
     def which_play(self, hall, date, season_id):
         with sqlite3.connect(self.db_path) as con:
             cur = con.cursor()
