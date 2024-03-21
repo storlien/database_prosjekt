@@ -18,10 +18,15 @@ KUNDEGRUPPE_CHOICES = [
     config.GRUPPE_HONNOR,
     config.HONNOR,
 ]
-SECTION_CHOICES = [
+SECTION_CHOICES_GAMLE_SCENE = [
     config.SECTION_GAMLE_SCENE_PARKETT,
     config.SECTION_GAMLE_SCENE_BALKONG,
     config.SECTION_GAMLE_SCENE_GALLERI,
+]
+
+SECTION_CHOICES_HOVEDSCENE = [
+    config.SECTION_HOVEDSCENEN_GALLERI,
+    config.SECTION_HOVEDSCENEN_PARKETT,
 ]
 
 
@@ -46,10 +51,18 @@ def main():
         print("Ugyldig datoformat. Vennligst bruk ÅÅÅÅ-MM-DD.")
         return
 
-    default_section = SECTION_CHOICES[0]
-    section = input(f"Skriv inn seksjonsnavnet (standard: {default_section}): ") or default_section
-
     hall = tm.get_hall_by_play(play_name)
+
+    if hall == config.HALL_GAMLE_SCENE:
+        SECTION_CHOICES = SECTION_CHOICES_GAMLE_SCENE
+    elif hall == config.HALL_HOVEDSCENEN:
+        SECTION_CHOICES = SECTION_CHOICES_HOVEDSCENE
+    else:
+        print("Ugyldig seksjon funnet. Vennligst skriv inn et gyldig teaterstykke.")
+        return
+    default_section = SECTION_CHOICES[0]
+    print(f"\n-> Mulige seksjoner for {hall} er: {', '.join(SECTION_CHOICES)}")
+    section = input(f"Skriv inn seksjonsnavnet (standard: {default_section}): ") or default_section
 
     if v.validate_section(hall, section):
         pass
@@ -57,7 +70,7 @@ def main():
         print("Ugyldig seksjonsnavn. Vennligst skriv inn et gyldig seksjonsnavn.")
         return
 
-    default_number_of_tickets = 1
+    default_number_of_tickets = 9
     number_of_tickets = (
         input(f"Skriv inn antall billetter (standard: {default_number_of_tickets}): ") or default_number_of_tickets
     )
