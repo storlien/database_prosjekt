@@ -3,6 +3,7 @@ from datetime import datetime
 
 from api.validator import Validator
 
+
 class TicketMaster:
 
     def __init__(self, db_path=config.DEFAULT_DB):
@@ -92,10 +93,19 @@ class TicketMaster:
             )
             return cur.lastrowid
 
-    def reserve_seats(self, kjop_id: int, section_id: int, row_number: int, n: int, play_id: int, act_no: int, customer_group: str):
+    def reserve_seats(
+        self,
+        kjop_id: int,
+        section_id: int,
+        row_number: int,
+        n: int,
+        play_id: int,
+        act_no: int,
+        customer_groups: list[str],
+    ):
         with sqlite3.connect(self.db_path) as con:
             cur = con.cursor()
-            for _ in range(n):
+            for group in customer_groups:
                 cur.execute(
                     """
                     INSERT INTO Billett (KjopID, StykkeID, ForestillingNr, OmraadeID, SeteNr, RadNr, KundeGruppe)
@@ -114,7 +124,7 @@ class TicketMaster:
                         act_no,
                         section_id,
                         row_number,
-                        customer_group,
+                        group,
                         section_id,
                         row_number,
                         play_id,
@@ -126,37 +136,42 @@ class TicketMaster:
             con.commit()
 
     def purchase_tickets(
-        self, play_name, date_str, section, n, phone_number, customer_name, customer_address, customer_group
+        self, play_name, date_str, section, n, phone_number, customer_name, customer_address, customer_groups
     ):
         try:
             date = datetime.strptime(date_str, "%Y-%m-%d").strftime("%Y-%m-%d")
         except ValueError:
-            return "Invalid date format. Please use YYYY-MM-DD."
+            return "Ugyldig datoformat. Vennligst bruk ÅÅÅÅ-MM-DD."
 
         play_id, act_no = self.get_play_id_and_act_no(play_name, date)
         if play_id is None or act_no is None:
-            return "Play or performance not found."
+            return "Forestillingen eller fremføringen ble ikke funnet."
 
         section_ids = self.get_section_ids(play_id)
         section_id = section_ids.get(section)
 
         if section_id is None:
             available_sections = ", ".join(section_ids.keys())
-            return f"Section '{section}' does not exist for this play. Available sections: {available_sections}"
+            return f"Seksjonen '{section}' eksisterer ikke for dette stykket. Tilgjengelige seksjoner: {available_sections}"
 
         row_number = self.find_available_seats_for_play(section_id, n, play_id, act_no)
         if row_number is not None:
             self.check_and_add_customer(phone_number, customer_name, customer_address)
             kjop_id = self.create_billett_kjop(phone_number)
-            self.reserve_seats(kjop_id, section_id, row_number, n, play_id, act_no, customer_group)
-            return f"{n} tickets reserved in section {section} on row {row_number} for '{play_name}' on {date}."
+            self.reserve_seats(kjop_id, section_id, row_number, n, play_id, act_no, customer_groups)
+            return (
+                f"{n} billetter reservert i seksjon {section} på rad {row_number} for '{play_name}' den {date}.",
+                kjop_id,
+            )
         else:
-            return "No available seats found."
+            return "Ingen tilgjengelige seter funnet.", None
 
     def admin_create_billett_kjop(self):
         return self.create_billett_kjop(config.ADMIN_PHONE_NUMBER)
 
-    def admin_reserve_tickets(self, play_name: str, date: str, section: str, bought_seats: list, kjop_id: int = None, season_id: int = 1):
+    def admin_reserve_tickets(
+        self, play_name: str, date: str, section: str, bought_seats: list, kjop_id: int = None, season_id: int = 1
+    ):
         if kjop_id is None:
             kjop_id = self.create_billett_kjop(config.ADMIN_PHONE_NUMBER)
 
@@ -164,8 +179,10 @@ class TicketMaster:
 
         for row_number, seat_number in bought_seats:
             self.reserve_single_seat(kjop_id, play_id, act_no, section, seat_number, row_number, "Admin")
-        
-    def reserve_single_seat(self, kjop_id: int, play_id: int, act_id: int, section_id: int, seat_no: int, row_no: int, customer_group: str):
+
+    def reserve_single_seat(
+        self, kjop_id: int, play_id: int, act_id: int, section_id: int, seat_no: int, row_no: int, customer_group: str
+    ):
         with sqlite3.connect(self.db_path) as con:
             cur = con.cursor()
             cur.execute(
@@ -187,7 +204,10 @@ class TicketMaster:
                     INSERT INTO Billett (KjopID, StykkeID, ForestillingNr, KundeGruppe, OmraadeID, SeteNr, RadNr)
                     VALUES (?, ?, ?, ?, ?, ?, ?)
                     """,
-                    (kjop_id, *seat,),
+                    (
+                        kjop_id,
+                        *seat,
+                    ),
                 )
             con.commit()
 

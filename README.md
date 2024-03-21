@@ -85,9 +85,15 @@ Brukstilfelle 1 ble løst i de foregående stegene der databasefilen ble satt op
 
 ### Brukstilfelle 3: Kjøp av stoler til forestilling
 
-//TODO
+For å kjøpe 9 stoler til forestilling "Størst av alt er kjærligheten", den 9ende februar for seter med alle stoler på samme rad, kjør kommando:
 
-### Brukergrensesnitt brukstilfelle 4-7
+```zsh
+python3 user_stories/brukstilfelle_3.py
+```
+
+Man må selv sette inn alle verdiene.
+
+## Brukergrensesnitt brukstilfelle 4-7
 
 For kjøre brukstilfellene 4-7 med et grensesnitt i terminalen, kjør kommando:
 
