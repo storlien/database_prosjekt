@@ -3,6 +3,18 @@ Prosjekt i faget TDT4145: Datamodellering og databasesystemer
 
 Det forutsettes at du har installert Python (versjon 3) og SQLite (versjon 3) for å kunne utføre stegene.
 
+## Mappestruktur - kort forklaring
+
+- `/api` inneholder klasser som håndterer spørringer relatert til brukerhistorie 1-3
+
+- `/seats_bought` inneholder alle tekstfiler delt ut for prosjektet
+
+- `/setup` inneholder spørringer for sette opp databasen, samt sette inn data til databasen
+
+- `/user_stories` ligger alle skripts som besvarer hver enkelt brukerhistorie. Mer om hvordan vi interagerer med disse brukerhistoriene kommer under.
+
+NB: `scan_seats` ligger i rotmappa da vi ser på denne som essensiell for de fleste *user_stories*
+
 ## Hvordan raskt sette opp alle tabeller med innsetting av data
 
 1. Kjør kommando i terminalen: 
@@ -135,7 +147,7 @@ python3 user_stories/brukstilfelle_5.py
 
 ### Brukstilfelle 6: Hvilke forestillinger har solgt best
 
-For å skrive ut hvilken forestilling som har solgt best, kjør kommando:
+For å skrive ut hvor mange billetter hver forestilling har solgt sortert synkende, kjør kommando:
 
 ```zsh
 python3 user_stories/brukstilfelle_6.py
@@ -160,9 +172,11 @@ Trønder stod ikke oppført i prosjektbeskrivelsen, men den fantes på nettsiden
 
 Baard Bratte var ikke satt opp på noen akter i tabellen i prosjektbeskrivelsen, så vi antar rollen spilles på akter 2, 3, 4 og 5. Vi har antatt dette fordi skuespilleren som spiller Baard Bratte spiller også Trønder, som vi har satt til å spille i akt 1.
 
+Da vi ikke fant mailaddressen på skuespillerne, har vi satt mailaddressen til å være `NULL`.
 
-## Endringer i ER Diagram
 
-- Endret kardinalitet (0,n) under Teatersal i diagrammet. Må kunne sette opp sal uten stykke.
+## Endringer i ER Diagram - oppgradert
+
+- Endret kardinalitet (0,n) fra (1, n) under Teatersal i diagrammet. Må kunne sette opp sal uten stykke.
 - Lagt til SkrevetAv på Teaterstykke
 - Endret fra ForGruppe til BillettPriser
