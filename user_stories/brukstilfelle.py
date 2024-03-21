@@ -10,20 +10,23 @@ def main():
 
     while True:
         print("Please select a script to run:")
-        print("1. brukstilfelle_4.py")
-        print("2. brukstilfelle_5.py")
-        print("3. brukstilfelle_6.py")
-        print("4. brukstilfelle_7.py")
-        print("0. Exit")
+        print("3 - Brukstilfelle 3")
+        print("4 - Brukstilfelle 4")
+        print("5 - Brukstilfelle 5")
+        print("6 - Brukstilfelle 6")
+        print("7 - Brukstilfelle 7")
+        print("0 - Exit")
         choice = input("Enter your choice: ")
     
-        if choice == "1":
-            run_script("brukstilfelle_4.py")
-        elif choice == "2":
-            run_script("brukstilfelle_5.py")
-        elif choice == "3":
-            run_script("brukstilfelle_6.py")
+        if choice == "3":
+            run_script("brukstilfelle_3.py")
         elif choice == "4":
+            run_script("brukstilfelle_4.py")
+        elif choice == "5":
+            run_script("brukstilfelle_5.py")
+        elif choice == "6":
+            run_script("brukstilfelle_6.py")
+        elif choice == "7":
             run_script("brukstilfelle_7.py")
         elif choice == "0":
             break
