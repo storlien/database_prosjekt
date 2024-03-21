@@ -69,8 +69,15 @@ def main():
         print("Ugyldig telefonnummer. Vennligst skriv inn et gyldig telefonnummer.")
         return
 
-    customer_name = input("Skriv inn kundens navn: ")
-    customer_address = input("Skriv inn kundens adresse: ")
+    name, address = tm.check_customer_exists(phone_number)
+    if not name or not address:
+        print("Brukeren eksisterer ikke. Vennligst registrer navn og addresse.")
+        customer_name = input("Skriv inn kundens navn: ")
+        customer_address = input("Skriv inn kundens adresse: ")
+    else:
+        customer_name = name
+        customer_address = address
+        print(f"Fant bruker på {phone_number}")
 
     customer_groups = []
     for i in range(number_of_tickets):
