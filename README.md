@@ -166,3 +166,11 @@ Guttorm Ingesson fantes ikke på nettsiden, så vi har ikke lagt inn denne i dat
 Trønder stod ikke oppført i prosjektbeskrivelsen, men den fantes på nettsiden. Den er derfor satt til å spille i akt 1 siden vi antar det egentlig er rollen Guttorm Ingesson.
 
 Baard Bratte var ikke satt opp på noen akter i tabellen i prosjektbeskrivelsen, så vi antar rollen spilles på akter 2, 3, 4 og 5. Vi har antatt dette fordi skuespilleren som spiller Baard Bratte spiller også Trønder, som vi har satt til å spille i akt 1.
+
+
+## Endringer i ER Diagram
+
+- Endret kardinalitet (0,n) under Teatersal i diagrammet. Må kunne sette opp sal uten stykke.
+- Lagt til SkrevetAv på Teaterstykke
+- Byttet fra Billettype til KundeGruppe i Billett
+- Endret fra ForGruppe til BillettPriser
