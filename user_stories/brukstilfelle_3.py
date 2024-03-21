@@ -48,7 +48,10 @@ def main():
 
     default_section = SECTION_CHOICES[0]
     section = input(f"Skriv inn seksjonsnavnet (standard: {default_section}): ") or default_section
-    if v.validate_section(config.HALL_GAMLE_SCENE, section):
+
+    hall = tm.get_hall_by_play(play_name)
+
+    if v.validate_section(hall, section):
         pass
     else:
         print("Ugyldig seksjonsnavn. Vennligst skriv inn et gyldig seksjonsnavn.")
@@ -69,8 +72,15 @@ def main():
         print("Ugyldig telefonnummer. Vennligst skriv inn et gyldig telefonnummer.")
         return
 
-    customer_name = input("Skriv inn kundens navn: ")
-    customer_address = input("Skriv inn kundens adresse: ")
+    name, address = tm.check_customer_exists(phone_number)
+    if not name or not address:
+        print("Brukeren eksisterer ikke. Vennligst registrer navn og addresse.")
+        customer_name = input("Skriv inn kundens navn: ")
+        customer_address = input("Skriv inn kundens adresse: ")
+    else:
+        customer_name = name
+        customer_address = address
+        print(f"Fant bruker på med navn '{name}', på adresse: '{address}' med telefonnummer '{phone_number}'")
 
     customer_groups = []
     for i in range(number_of_tickets):

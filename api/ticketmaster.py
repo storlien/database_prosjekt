@@ -74,6 +74,17 @@ class TicketMaster:
 
         return rows[0][0] if rows else None
 
+    def check_customer_exists(self, phone_number):
+        with sqlite3.connect(self.db_path) as con:
+            cur = con.cursor()
+            cur.execute("SELECT Navn, Adresse FROM KundeProfil WHERE Mobilnummer = ?", (phone_number,))
+            result = cur.fetchone()
+            if result:
+                navn, adresse = result
+                return navn, adresse
+            else:
+                return None, None
+
     def check_and_add_customer(self, phone_number, name, address):
         with sqlite3.connect(self.db_path) as con:
             cur = con.cursor()
@@ -84,6 +95,7 @@ class TicketMaster:
                     (phone_number, name, address),
                 )
                 con.commit()
+            return cur.fetchone() is None
 
     def create_billett_kjop(self, phone_number):
         with sqlite3.connect(self.db_path) as con:
@@ -228,3 +240,21 @@ class TicketMaster:
                 (hall, date, season_id),
             )
             return cur.fetchone()
+
+    def get_hall_by_play(self, play: str):
+        with sqlite3.connect(self.db_path) as con:
+            cur = con.cursor()
+            cur.execute(
+                """
+                SELECT SalNavn
+                FROM Teatersal
+                WHERE SalNr = (
+                    SELECT SalNr
+                    FROM Teaterstykke
+                    WHERE Tittel = ?
+                )
+                """,
+                (play,),
+            )
+            result = cur.fetchone()
+            return result[0] if result else None
