@@ -104,6 +104,16 @@ python3 scan_seats.py seats_bought/gamle-scene.txt "Gamle scene"
 python3 scan_seats.py seats_bought/hovedscenen.txt "Hovedscenen"
 ```
 
+### Brukergrensesnitt brukstilfelle 3-7
+
+For kjøre brukstilfellene 3-7 med et grensesnitt i terminalen, kjør kommando:
+
+```zsh
+python3 user_stories/brukstilfelle.py
+```
+
+Videre er det kommandoer for å kjøre brukstilfellene 3-7 direkte:
+
 ### Brukstilfelle 3: Kjøp av stoler til forestilling
 
 For å kjøpe 9 stoler til forestilling "Størst av alt er kjærligheten", den 9. februar for seter med alle stoler på samme rad, kjør kommando:
@@ -111,18 +121,6 @@ For å kjøpe 9 stoler til forestilling "Størst av alt er kjærligheten", den 9
 ```zsh
 python3 user_stories/brukstilfelle_3.py
 ```
-
-Man må selv sette inn alle verdiene.
-
-### Brukergrensesnitt brukstilfelle 4-7
-
-For kjøre brukstilfellene 4-7 med et grensesnitt i terminalen, kjør kommando:
-
-```zsh
-python3 user_stories/brukstilfelle.py
-```
-
-Videre er det kommandoer for å kjøre brukstilfelle 4-7 direkte:
 
 ### Brukstilfelle 4: Oversikt over forestillinger og solgte stoler en gitt dato
 
